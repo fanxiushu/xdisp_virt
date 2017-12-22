@@ -1,0 +1,119 @@
+;
+;
+;  Fanxiushu 2017 , 镜像显示驱动 
+;  Fanxiushu 2017 , 虚拟显示驱动(XPDM模式, 只支持WinXP系统）
+;
+;
+
+[Version]
+Signature="$Windows NT$"
+ClassGUID={4D36E968-E325-11CE-BFC1-08002BE10318}
+Class=Display
+Provider=%FXS%
+DriverVer=04/23/2017,1.0.0.1
+CatalogFile=xdisp_virt.cat
+
+[Manufacturer]
+%FXS% = xdispMfg, NTx86.5.1, NTx86.6.0, NTamd64.5.1, NTamd64.6.0
+
+[xdispMfg.NTx86.5.1]
+%xdisp_mirror%  = xdisp_mirror,  %mirror_hwid%
+%xdisp_virtual% = xdisp_virtual, %virtual_hwid%
+
+[xdispMfg.NTamd64.5.1]
+%xdisp_mirror% = xdisp_mirror,   %mirror_hwid%
+%xdisp_virtual% = xdisp_virtual, %virtual_hwid%
+
+
+[xdispMfg.NTx86.6.0]
+%xdisp_mirror%  = xdisp_mirror,  %mirror_hwid%
+
+[xdispMfg.NTamd64.6.0]
+%xdisp_mirror% = xdisp_mirror,   %mirror_hwid%
+
+
+[DestinationDirs]
+xdispM.Miniport   = 12  ; drivers
+xdispM.Display    = 11  ; system32
+xdispV.Miniport   = 12  ; drivers
+xdispV.Display    = 11  ; system32
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+xdisp_virt.sys  = 1,,
+xdisp_virt.dll  = 1,,
+
+
+[xdisp_mirror]
+CopyFiles = xdispM.Miniport, xdispM.Display
+
+[xdisp_virtual]
+CopyFiles = xdispV.Miniport, xdispV.Display
+
+[xdispM.Miniport]
+xdisp_mirror.sys, xdisp_virt.sys
+[xdispM.Display]
+xdisp_mirror.dll, xdisp_virt.dll
+
+[xdispV.Miniport]
+xdisp_virt.sys, xdisp_virt.sys
+[xdispV.Display]
+xdisp_virt.dll, xdisp_virt.dll
+
+
+[xdisp_mirror.Services]
+AddService = xdisp_mirror, 0x00000002, xdispM_Service_Inst
+
+[xdisp_virtual.Services]
+AddService = xdisp_virt, 0x00000002, xdispV_Service_Inst
+
+[xdispM_Service_Inst]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_SYSTEM_START
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+LoadOrderGroup = Video
+ServiceBinary  = %12%\xdisp_mirror.sys
+
+[xdispV_Service_Inst]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_SYSTEM_START
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+LoadOrderGroup = Video
+ServiceBinary  = %12%\xdisp_virt.sys
+
+
+[xdisp_mirror.SoftwareSettings]
+AddReg = xdisp_mirror_SoftwareDeviceSettings
+
+[xdisp_virtual.SoftwareSettings]
+AddReg = xdisp_virtual_SoftwareDeviceSettings
+
+[xdisp_mirror_SoftwareDeviceSettings]
+HKR,, MirrorDriver,                %REG_DWORD%,    1
+HKR,, InstalledDisplayDrivers,     %REG_MULTI_SZ%, xdisp_mirror
+HKR,, VgaCompatible,               %REG_DWORD%,    0
+HKR,, Attach.ToDesktop,            %REG_DWORD%,    1
+
+[xdisp_virtual_SoftwareDeviceSettings]
+HKR,, InstalledDisplayDrivers,     %REG_MULTI_SZ%, xdisp_virt
+HKR,, VgaCompatible,               %REG_DWORD%,    0
+
+[Strings]
+REG_SZ         = 0x00000000
+REG_MULTI_SZ   = 0x00010000
+REG_EXPAND_SZ  = 0x00020000
+REG_BINARY     = 0x00000001
+REG_DWORD      = 0x00010001
+
+FXS            = "Fanxiushu"
+DiskId1        = "Virtual Display Device Installation Disk #1"
+
+xdisp_mirror   = "Fanxiushu Mirror Display Driver"
+xdisp_virtual  = "Fanxiushu Virtual Display Driver (XPDM for WinXP Only)"
+
+mirror_hwid    = "fanxiushu_mirror_display"
+virtual_hwid   = "fanxiushu_virtual_display_winxp"
+
+

@@ -4,7 +4,7 @@
 支持的浏览器包括 chrome，firefox， safari， opera， Microsoft Edge等，（不支持IE，对IE11只是有限支持)
 被控制端支持的平台包括 windows系列（从 XP，WIN7， WIN8， WIN10）。
 
-也支持原生的客户端程序，只是本次没有吧客户端提供出来。
+也支持原生的客户端程序，只是本次没有把客户端提供出来。
 
 
 bin目录包含xdisp_virt.exe程序，xdisp_virt.ini是它的配置文件，
@@ -17,5 +17,8 @@ driver目录是镜像驱动，没有签名。
 html目录包含所有网页以及javascript脚本，html目录已经被打包进 xdisp_virt.exe程序。
 
 image目录是程序运行的一些效果图。
+
+相关博客：
+http://blog.csdn.net/fanxiushu/article/details/78869719
 
 Fanxiushu 2017

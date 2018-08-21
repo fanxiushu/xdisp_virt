@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title> </title>
+    <link href="/css/main_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table width=100%>
+        <tr>
+            <td nowrap>
+                <table bgcolor="#AABBCC" width=300 align=center><tr><td nowrap><b><center><font size=4 color=#1a1a0a> 
+                    <div id="titleName"></div> </font></center></b></td></tr></table><br />
+                <br><div style="font-size:22px; bgcolor:#F0D450;" >
+                    &nbsp;&nbsp;<a href="javascript:void(0)" onclick="image_set()">Set Detailed Parameters</a>
+                    &nbsp;&nbsp;<a href="javascript:void(0)" onclick="stream_push()">Set PushStream or Save to Local</a>
+                    </div><br /><br><div style="font-size:15px; bgcolor:#F03450;">
+                    <b><font size=3 color=#175011>&nbsp;&nbsp;Audio Compression Mode: </font></b>&nbsp;
+                    <select id="audio_type">
+                        <option value="1" selected="selected">AAC-LC</option>
+                        <option value="4">MP2</option>
+                    </select>
+                &nbsp;&nbsp;&nbsp;<a href="/lang_english/about.html" target="_blank"><font size=4 color="#4F88f9"><b>About</b></font></a></div>
+                <br><div style="font-size:15px; bgcolor:#F03450;">
+                    <b><font size=3 color=#aa0011>&nbsp;&nbsp;Image Compression Mode：</font></b>
+                    <font size=1>&nbsp; ( Using JavaScript decoding; H264 video using h264bsd open source library, MPEG1 video and MP2 audio using jsmpeg open source library )</font>
+                </div><br />
+                <table style="font-size:14px;" border="0" bgcolor="#d1d1e1" width="90%" align="center">
+                    <tr>
+                        <td style="width:80px;" nowrap>&nbsp;&nbsp;&nbsp;&nbsp;<font size=4 color="#1F71BC"><b>1.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td style="width:150px;" nowrap><font style="font-size:20px;"><a href="javascript:void(0)" onclick="mjpg_go()">MJPG</a> &nbsp;</font></td>
+                        <td nowrap>Using JPEG picture flow takes up a lot of bandwidth.<br />But in mobile phones and other mobile devices browser is more fluent.</td>
+                    </tr>
+                    <tr><td nowrap>&nbsp;</td></tr>
+                    <tr>
+                        <td  style="width:80px;"  nowrap>&nbsp;&nbsp;&nbsp;&nbsp;<font size=4 color="#1F71BC"><b>2.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td  style="width:150px;"  nowrap><font style="font-size:20px;"><a href="javascript:void(0)" onclick="h264_go()">H.264<font size=2>(Recommend)</font></a> &nbsp;</font></td>
+                        <td nowrap>With H.264 compression, the bandwidth is low, but the CPU share is high.<br />There is a lot of delay in browsers and other mobile device browsers.</td>
+                    </tr>
+                    <tr><td nowrap>&nbsp;</td></tr>
+                    <tr>
+                        <td style="width:80px;"  nowrap>&nbsp;&nbsp;&nbsp;&nbsp;<font size=4 color="#1F71BC"><b>3.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td  style="width:150px;"  nowrap><font style="font-size:20px;"><a href="javascript:void(0)" onclick="mpeg1_go()">MPEG1</a> &nbsp;</font></td>
+                        <td nowrap>With MPEG1 compression, the bandwidth is low, but the CPU share is high.<br />There is a lot of delay in browsers and other mobile device browsers.</td>
+                    </tr>
+                    <tr><td nowrap>&nbsp;</td></tr>
+                    <tr>
+                        <td  style="width:80px;"  nowrap>&nbsp;&nbsp;&nbsp;&nbsp;<font size=4 color="#1F71BC"><b>4.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td  style="width:150px;"  nowrap><font style="font-size:20px;"><a href="javascript:void(0)" onclick="vp8_go()">VP8</a> &nbsp;</font></td>
+                        <td nowrap>With VP8 compression, the bandwidth is low, but the CPU share is high.<br />There is a lot of delay in browsers and other mobile device browsers.</td>
+                    </tr>
+                    <tr><td nowrap>&nbsp;</td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td nowrap>
+                <font size=2 color="#407090"><br />&nbsp;Note: Please use Chrome, Firefox, Edge, Safari, Opera and other modern browsers that support the latest features, not IE and IE kernel browsers&nbsp;</font>
+            </td>
+        </tr>
+        <tr><td nowrap><br><center><font color=#223377 size=2>&nbsp;&nbsp;CopyRight 2017-2018 Fanxiushu </font></center></td></tr>
+    </table>
+    <script>
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        setTitleName();
+
+        function setTitleName(){
+            var tmp=getQueryString("desc"); 
+            if(tmp) {//alert(document.getElementById('title_name').InnerHTML);
+                document.getElementById('titleName').innerText=tmp;
+                document.title = tmp + ' Remote image compression selection';
+            }
+        }
+       
+        function mjpg_go() {
+            var audiotype = parseInt(document.getElementById('audio_type').value);
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            window.location.href = "/htmlvideo?id=" + getQueryString("id") + "&compress=mjpg&audiotype=" + audiotype + "&desc=" + escape(desc);
+        }
+        function h264_go() {
+            var audiotype = parseInt(document.getElementById('audio_type').value);
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            window.location.href = "/htmlvideo?id=" + getQueryString("id") + "&compress=h264&audiotype=" + audiotype + "&desc=" + escape(desc);
+        }
+        function vp8_go() {
+            var audiotype = parseInt(document.getElementById('audio_type').value);
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            window.location.href = "/htmlvideo?id=" + getQueryString("id") + "&compress=vp8&audiotype=" + audiotype + "&desc=" + escape(desc);
+        }
+        function mpeg1_go() {
+            var audiotype = parseInt(document.getElementById('audio_type').value);
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            window.location.href = "/htmlvideo?id=" + getQueryString("id") + "&compress=mpeg1&audiotype=" + audiotype + "&desc=" + escape(desc);
+        }
+        function image_set(){
+            var url = "/lang_english/image_set.html?id="+getQueryString("id")+"&desc="+ escape(document.getElementById('titleName').innerText); // escape把中文转码
+            window.location.href=url;
+        }
+        function stream_push(){
+            var url = "/lang_english/stream_push.html?id="+getQueryString("id")+"&desc="+ escape(document.getElementById('titleName').innerText); // escape把中文转码
+            window.location.href=url;
+        }
+    </script>
+</body>
+</html>
+

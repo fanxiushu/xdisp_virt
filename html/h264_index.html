@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+    <!-- by fanxiushu 2018-07-31 -->
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>Control Picture</title>
+    <link href="/css/main_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="width:100%;height:100%;margin: 0;padding:0;background-color:#919090">
+    <table width="100%" height="100%" border="0" ellSpacing=0 cellPadding=0 >
+        <tr id="table_line1" >
+            <td nowrap><table border="0" ellSpacing=0 cellPadding=0 ><tr><td nowrap id="titleName">
+                &nbsp;&nbsp;<b><font size=1 color=#7a0a0a>Picture</font></b></td><td nowrap >
+                <input type="button" id="screen" value="全屏" class="ml-button-4" onclick="screen()" />
+                <ul id="menu" style="vertical-align:text-bottom;"><li><a href="javascript:void(0)">匹配</a>
+                        <ul><li><a href="javascript:void(0)" onclick="match_remote(3)" style="font-size:14px;padding:6px 10px;">匹配浏览器</a></li>
+                            <li><a href="javascript:void(0)" onclick="match_remote(1)" style="font-size:14px;padding:6px 10px;">匹配远端屏幕</a></li>
+                            <li><a href="javascript:void(0)" onclick="match_remote(2)" style="font-size:14px;padding:6px 10px;">锁定宽和高</a></li>
+                        </ul></li></ul>
+
+                <input type="text" id="screen_width" value="0" style="width:40px;" class="ml-button-4" />
+                <input type="text" id="screen_height" value="0" style="width:40px;" class="ml-button-4" />
+                <input type="button" id="change" value="改变远端宽高" class="ml-button-4" onclick="change_screen_size()" />
+
+                <ul id="menu" style="vertical-align:text-bottom;" >
+                    <li onmouseover="document.getElementById('menu_ul').style.display='block';" onmouseout="document.getElementById('menu_ul').style.display='none';">
+                    <a href="javascript:void(0)">特殊控制</a>
+                        <ul id="menu_ul">
+                            <li><a href="javascript:void(0)" onclick="send_ctrl_alt_del()" style="font-size:14px;padding:6px 10px;">CTRL+ALT+DEL</a></li>
+                            <li><a href="javascript:void(0)" onclick="show_hide_cursor()" style="font-size:14px;padding:6px 10px;">显/隐远端鼠标</a></li>
+                            <li><a href="javascript:void(0)" onclick="mouse_keyboard_control()" style="font-size:14px;padding:6px 10px;" id="a_mouse_key">停止鼠标键盘控制</a></li>
+                            <li><a href="javascript:void(0)" onclick="changeVideoAudioStat(1)" style="font-size:14px;padding:6px 10px;" id="a_video_enable">暂停远端图像</a></li>
+                            <li><a href="javascript:void(0)" onclick="changeVideoAudioStat(2)" style="font-size:14px;padding:6px 10px;" id="a_audio_enable">暂停远端音频</a></li>
+                        </ul></li></ul>
+                <input type="button" id="record" value="开启话筒" class="ml-button-4" onclick="start_record()" style="background-color:#F10018;color:#F0F0E3"/>
+     
+                <ul id="menu" style="vertical-align:text-bottom;"><li><a href="javascript:void(0)">音量设置</a><ul><li>
+                <div style="background-color:#eFF98F;padding: 4px 10px;"><font size="3" color="#009900">播放音量: &nbsp;&nbsp;</font>
+                    <input type="button" id="volumeDec" value="-" class="ml-button-4" onclick="volume_dec(1)" style="font-size:16px;"/>
+                    <input type="text" id="volumeRate" value="1.0" style="width:30px;text-align:center;font-size:16px;" class="ml-button-4" />
+                    <input type="button" id="volumeInc" value="+" class="ml-button-4" onclick="volume_inc(1)"  style="font-size:16px;"/>
+                 </div></li>
+                <li><div style="background-color:#eFF98F;padding: 8px 10px;"><font size="3" color="#009900">录音音量: &nbsp;&nbsp;</font>
+                    <input type="button" id="volumeDec1" value="-" class="ml-button-4" onclick="volume_dec(2)" style="font-size:16px;"/>
+                    <input type="text" id="volumeRate1" value="1.0" style="width:30px;text-align:center;font-size:16px;" class="ml-button-4" />
+                    <input type="button" id="volumeInc1" value="+" class="ml-button-4" onclick="volume_inc(2)"  style="font-size:16px;"/>
+                 </div></li>
+                </ul></li></ul>
+
+                <ul id="menu" style="vertical-align:text-bottom;"><li><a href="javascript:void(0)">参数设置</a>
+                        <ul><li><a href="javascript:void(0)" onclick="image_set()" style="font-size:14px;padding:6px 10px;">编码设置</a></li>
+                            <li><a href="javascript:void(0)" onclick="stream_push()" style="font-size:14px;padding:6px 10px;">推流与保存</a></li></ul></li></ul>
+                <input type="button" id="about" value="关于" class="ml-button-4" onclick="about()" />
+                <input type="button" id="back" value="返回" class="ml-button-4" onclick="back_parent()" />
+            </td></tr></table>
+        </td>
+        </tr>
+        <tr id="table_line2">
+            <td nowrap>
+                <center>
+                    <div id="divscreen">
+                        <canvas id="videoCanvas" width=1024 height=600 style="display:none;" allowFullScreen="allowFullScreen" onmousedown="return false; " onkeydown="return false; "></canvas>
+                        <img id="imgVideo" style="display:none;" src="" onmousedown="return false; " onkeydown="return false; " />
+                    </div>
+                </center>
+            </td>
+        </tr>
+        <tr id="table_line3"><td nowrap><center><font color=#45Fa44 size=1>CopyRight 2017-2018 Fanxiushu </font></center></td></tr>
+    </table>
+    <script type="text/javascript" src="/xdisp_h264.js"></script>
+    <script type="text/javascript" src="/xdisp_mjpg.js"></script>
+    <script type="text/javascript" src="/record_audio.js"></script>
+    <script>
+        var is_mjpg = false;
+        var canvas = null;
+        var audiotype = 1; /// AAC-LC
+        var play = null;
+
+        setTitleName();
+        var proto = "ws://";
+        if (document.location.protocol == 'https:') {
+            proto = "wss://"
+        }
+        var url = proto + window.location.host + '/wsock_stream?id=' + getQueryString("id");
+        ////
+        var match_type = 3;
+        if (!IsPcBrowser()) {
+            match_type = 1; 
+        }
+        document.body.className = ('ontouchstart' in window) ? 'mobile' : 'desktop';
+        ////
+        tmp = getQueryString("audiotype"); if (tmp) audiotype = parseInt(tmp);
+
+        tmp = getQueryString("compress");
+        if (tmp && tmp == 'mjpg') {
+            is_mjpg = true;
+            canvas = document.getElementById('imgVideo');
+            canvas.style.display = '';
+            var mjpgid = createRandomId();
+            ////
+            url += "&mjpgid=" + mjpgid;
+
+            canvas.src = '/mjpg_stream?id=' + getQueryString("id") + '&mjpgid=' + mjpgid; 
+            changeImgSize(canvas, match_type); 
+
+            player = new xdisp_mjpg(canvas, url, audiotype, function (width, height) {
+                changeImgSize(canvas, match_type);
+                document.getElementById('screen_width').value = width;
+                document.getElementById('screen_height').value = height;
+
+            });
+            /////
+        }
+        else{
+            canvas = document.getElementById('videoCanvas');
+            canvas.style.display = '';
+            ////
+            changeCanvasSize(canvas, match_type);
+            var compress = 4;
+            if (tmp && tmp === 'mpeg1') compress = 8;
+            else if (tmp && tmp === 'vp8') compress = 9; // VP8
+
+            player = new xdisp_h264(url, canvas, compress, audiotype, function (width, height) {
+                changeCanvasSize(canvas, match_type); 
+                document.getElementById('screen_width').value = width;
+                document.getElementById('screen_height').value = height;
+                ////
+            });
+        }
+        /////
+
+        player.setVolume(parseInt(document.getElementById('volumeRate').value)); ///
+
+        function setTitleName() {
+            var tmp = getQueryString("desc");
+            if (tmp) {//alert(document.getElementById('title_name').InnerHTML);
+                document.getElementById('titleName').innerHTML = "&nbsp;&nbsp;<b><font size=1 color=#9a0a0a>"+tmp+"</font></b>";
+                document.title = tmp;
+            }
+        }
+        ////
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        function createRandomId() {
+            return (Math.random() * 10000000).toString(16).substr(0, 4) + '-' + (new Date()).getTime() + '-' + Math.random().toString().substr(2, 5);
+        }
+
+        function changeSize() {
+            if (is_mjpg) changeImgSize(canvas, match_type);
+            else changeCanvasSize(canvas, match_type);
+        }
+        function screen() {
+            launchFullScreen(document.getElementById('divscreen'));
+        }
+        function match_remote(type) {
+            match_type = type; if (match_type > 3) match_type = 1;
+            changeSize();
+        }
+        function change_screen_size() {
+            if (player) player.change_remote_screen_size(document.getElementById('screen_width').value, document.getElementById('screen_height').value);
+        }
+        function send_ctrl_alt_del() {
+            player.send_control_code(1); ///
+            document.getElementById('menu_ul').style.display = "none";
+        }
+        function show_hide_cursor() {
+            player.send_control_code(2); ///
+            document.getElementById('menu_ul').style.display = "none";
+        }
+        var is_enable_mouse_key = true;
+        function mouse_keyboard_control() {
+            is_enable_mouse_key = !is_enable_mouse_key;
+            player.setMouseKeyboardControl(is_enable_mouse_key);
+            document.getElementById('a_mouse_key').innerText = is_enable_mouse_key ? "停止鼠标键盘控制" : "启动鼠标键盘控制";
+            document.getElementById('menu_ul').style.display = "none";
+        }
+        function volume_inc(type) {
+            var obj;
+            if (type == 1) obj = document.getElementById('volumeRate');
+            else obj = document.getElementById('volumeRate1');
+
+            var vol = parseFloat(obj.value);
+            vol += 0.2; if (vol > 100) vol = 100;
+            vol = vol.toFixed(1);
+            obj.value = vol;
+            ///
+            if (type == 1) {
+                if (player) player.setVolume(vol);
+            }
+            else {
+                webaudio_set_volume(vol);
+            }
+            ////
+        }
+        function volume_dec(type) {
+            var obj;
+            if (type == 1) obj = document.getElementById('volumeRate');
+            else obj = document.getElementById('volumeRate1');
+
+            var vol = parseFloat(obj.value);
+            vol -= 0.2; if (vol < 0) vol = 0.0;
+            vol = vol.toFixed(1);
+            obj.value = vol;
+            ///
+            if (type == 1) {
+                if (player) player.setVolume(vol);
+            }
+            else {
+                webaudio_set_volume(vol);
+            }
+            ////
+        }
+        function image_set() {
+            var url = "/image_set.html?id=" + getQueryString("id") + "&desc=" + escape(document.title);
+            window.open(url);
+            ////
+        }
+        function stream_push() {
+            var url = "/stream_push.html?id=" + getQueryString("id") + "&desc=" + escape(document.title);
+            window.open(url);
+            ////
+        }
+        function back_parent() {
+            window.location.href = "/htmlvideo?id=" + getQueryString("id") + "&desc=" + escape(document.title);
+        }
+        function about() {
+            window.open("/about.html");
+        }
+        window.onresize = function () {
+            if (IsPcBrowser()) {
+                changeSize();
+            }
+        }
+        function changeVideoAudioStat(type) {
+            player.changeVideoAudioState(type);
+            document.getElementById('menu_ul').style.display = "none";
+            var state = player.getVideoAudioState(type);
+            if (type == 1) {
+                document.getElementById('a_video_enable').innerText = state ? "暂停远端图像":"启动远端图像";
+            }
+            else {
+                document.getElementById('a_audio_enable').innerText = state ? "暂停远端声音" : "启动远端声音";
+            }
+        }
+        ////
+        var is_record = false;
+        var Interval_id = null;
+        var color_chg = false;
+        function start_record() {
+            is_record = !is_record;
+            ///
+            if (is_record) {
+                if (document.location.protocol != 'https:') {
+                    alert('警告：某些浏览器器需要进入安全环境才能开启话筒，请进入 HTTPS 请求环境');
+                }
+                Interval_id = setInterval(function () {
+                    ///
+                    color_chg = !color_chg;
+                    document.getElementById('record').style = color_chg ? "background-color:#F10018;color:#F0F0E3" : "background-color:#101028;color:#D0F0E3";
+                    ////
+                }, 500);
+                ///
+                webaudio_recoder_create(url, function (err) {
+                    is_record = true;
+                    start_record();
+                    alert(err);
+                });
+                ///////
+            }
+            else {
+                if(Interval_id!=null)clearInterval(Interval_id);
+                Interval_id = null;
+                document.getElementById('record').style = "background-color:#F10018;color:#F0F0E3";
+                ////
+                webaudio_recorder_destroy();
+            }
+            /////
+        }
+    </script>
+</body>
+</html>
+

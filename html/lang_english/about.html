@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <!-- by fanxiushu 2018-08-20 -->
+<head>
+    <title>About the Software</title>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+    
+<body style="background-color:#919090">
+    <table align="center" border="0" style="background-color:#FEFEFE;height:100%;width:90%;">
+        <tr>
+            <td nowrap><br />
+                <table bgcolor="#AABBCC" width="400" height="40" align="center"><tr><td nowrap ><center> <b> About the Software </b></center></td></tr></table>
+                <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td nowrap>
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                    <tr bgcolor="#DDECED"><td nowrap>
+                This is a remote desktop control program based on Windows platform.<br />
+                It not only provides remote control, but also supports video cameras, multi-channel audio, <br />push stream, and multimedia entertainment functions such as watching videos and playing games on a remote desktop.<br />
+                And provide a transit server program to solve the remote desktop problem of accessing the intranet.<br />
+                The control end supports Windows series (including WINXP, WIN7, WIN8, WIN10).<br />
+                The control side supports native clients, and also supports web clients.<br />
+                Web client-supported browsers include Chrome, FireFox, Apple Safari, Microsoft Edge, Opera and other modern browsers.<br />
+                IE and IE kernel browser are not supported. Web client is open platform, almost all operating system platforms support (including mobile platforms and PC platforms).<br />
+                Network transmission not only supports unencrypted plaintext transmission, but also supports SSL encrypted transmission, providing security for data transmission.<br />
+                <br />
+                The software does not link to a fixed server, nor does it provide automatic update. If there is any need, please send me an email.<br />
+                <a href="mailto:fanxiushu@163.com">fanxiushu@163.com</a> <br />
+                Or visit related BLOG:<br />
+                CSDN: <a href="https://blog.csdn.net/fanxiushu">https://blog.csdn.net/fanxiushu</a> <br />
+                GITHUB: <a href="https://github.com/fanxiushu">https://github.com/fanxiushu</a> <br />
+                <br />
+                This software does not belong to any company or organization. Copyright is owned by Fanxiushu.<br />
+                <font color="#EE2900">It can not be used for commercial purposes without the permission of the developer.</font><br /><br />
+               <div align="center">Fanxiushu 2017-2018 <br /></div>
+                </td></tr></table></td>
+            </tr>
+        <tr>
+            <td nowrap>
+                <br />
+                Procedures and principles:<br/>
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                    <tr bgcolor="#E2EeE1"><td nowrap>
+                This software includes two programs (and two configuration files), xdisp_virt.exe和xdisp_server.exe。<br />
+                Xdisp_virt implements the core remote desktop functions, and native or web clients can connect directly to this program, <br />
+                        which can also connect to the xdisp_server transit server.<br />
+                Xdisp_server implements the network transfer service, runs xdisp_server on the public network server, <br />
+                        and xdisp_virt on the intranet connects to xdisp_server on the public network.<br />
+                A native or web client can connect to xdisp_server to get all the xdisp_virt lists, so you can choose one to establish remote control.<br />
+                <br />
+                Software uses GDI, DXGI or Mirror driver technology to capture desktop image data from Windows, <br />
+                        and WASAPI technology to capture the internal sound of the computer, and then uses various coding algorithms.<br />
+                The audio and image coding compression, defined as a private transport protocol, is transmitted over the network to the native or web client.<br />
+                Web client uses WebSocket network transmission to get the encoded image and voice, and then through JavaScript decoding,<br />
+                         and then draw on the page, the voice played out through the web page.<br />
+                 Specific principles can be described in the Windows series on CSDN for remote desktop articles.
+<br />
+                    </td></tr></table>
+            </td>
+        </tr>
+        <tr>
+            <td nowrap><br />
+                The open source library used is as follows:<br />
+                 <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center"><tr bgcolor="#E6EeE1"><td nowrap>
+                1,X264 and openh264 are used for image H264 coding. <br />
+                     &nbsp;&nbsp;&nbsp;Mfx_dispatch and ffmpeg are used for QSV hard coding and Nvidia graphics hardcoding of H264 Intel graphics card.<br />
+                2,Ffmpeg is used for MPEG4, MPEG2, MPEG1 coding, as well as some image and audio conversion, rtsp, RTMP push stream, and AAC, FLAC, AC3, MP2 audio coding.<br />
+                3,Libvpx is used for encoding and decoding of VP8 and VP9.<br />
+                4,Libjpeg-turbo is used for JPEG image coding and decoding, as well as RGB and YUV format conversion.<br />
+                5,Libyuv is used for fast image scaling.<br />
+                6,Fdk-aac and ffmpeg are used for AAC encoding, and JBIG2 is used for two value image coding and decoding.<br />
+                7,X265 is used for H265 encoding.<br />
+                8,Zlib, liblzma and LZO are used for lossless compression.<br />
+                9,OpenSSL is used for encrypted transmission of network SSL.<br />
+                10,The unqlite object database is used to save configuration parameters.<br />
+                11,Jsmpeg and h264bsd, as well as some other related JS open source libraries, are used for web client JavaScript to decode images and audio.<br />
+            </td></tr></table></td>
+        </tr>
+        <tr>
+            <td nowrap><br />
+                The use explain of software:<br />
+                 <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center"><tr bgcolor="#EEE6E6"><td nowrap>
+                Personal and family free use of this software, when the use of remote control image will appear on a watermark.<br />
+                No software shall be used to engage in commercial activities without permission.<br />
+                This software should not be used for illegal criminal activities, otherwise the consequences will be conceited.<br />
+            </td></tr></table></td>
+        </tr>
+        <tr>
+            <td nowrap><br />
+                Other:<br />
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center"><tr bgcolor="#E4E4E9"><td nowrap>
+                Content is numerous, time is hasty, BUG unavoidably, if encounter a problem, hope to be able to point out.<br />
+                XFsRedir is a directory redirection program that can bring all the contents of all other computers together.<br />
+                ownload Link：<br />
+                CSDN: <a href="http://download.csdn.net/download/fanxiushu/10416862">http://download.csdn.net/download/fanxiushu/10416862</a><br />
+                GITHUB: <a href="https://github.com/fanxiushu/xFsRedir">https://github.com/fanxiushu/xFsRedir</a><br />
+                XFsRedir works with xidsp_virt to control as many computers and their file resources as you want in your home or company.<br />
+            </td></tr></table></td>
+        </tr>
+        <tr><td nowrap><br><center><font color=#223377 size=2>&nbsp;&nbsp;CopyRight 2017-2018 Fanxiushu </font></center></td></tr>
+    </table>
+</body>
+</html>
+

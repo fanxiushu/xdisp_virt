@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <!-- by fanxiushu 2018-07-08 -->
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title> 远端推流设置 </title>
+    <link href="css/main_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <table width="100%">
+        <tr><td nowrap>
+            <table bgcolor="#AABBCC" width="400" height="40" align="center"><tr><td nowrap id="titleName"><center> <b> 远端推流设置 </b></center></td></tr></table>
+            <div style="font-size:18px; color:#103420;display:inline-block;">当前配置：&nbsp;</div>
+            <div align="center" style="display:inline-block;">&nbsp;<a href="javascript:void(0)" onclick="back_home()"><font size=4>返回主页</font></a>
+                &nbsp;&nbsp;&nbsp;<a href="/about.html" target=_blank><font size="4">关于</font></a>
+            </div>
+            <div align="center" style="display:inline-block;" id="sp_deny"></div>
+            <br /><br />
+            <table width="90%" bgcolor="#EFEFEE" align="center" border=0 cellSpacing=0 cellPadding=0 >
+                <tr><td nowrap id="urls_display"></td></tr></table>
+            <br /><table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                     <tr bgcolor="#e0dFdE" style="font-size:15px;height:40px;width:100%"><td nowrap id="warn_video" style="width:450px;">
+                   </td><td nowrap id="warn_audio">&nbsp;</td>
+                     </tr>
+                </table>
+            <table width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                <tr bgcolor="#FFFFFE" style="font-size:15px;height:40px;width:100%">
+                
+                    <td nowrap><br />&nbsp;<a href="javascript:void(0)" onclick="image_set()"><font color="blue" size="5">设置图像音频编码详细参数</font></a></td>
+                </tr></table>
+            
+            <br/><hr /><br /><div style="font-size:18px; bgcolor:#F03450;">添加新URL：&nbsp;</div><br />
+            <table width="90%" align="center" border=0 cellSpacing=0 cellPadding=0 >
+                <tr height="50"><td nowrap bgcolor="#b1c1a1" >
+                    URL:&nbsp;&nbsp;<input type="text" style="width:300px;" id="txt_url" class="ml-button-4"/>&nbsp;&nbsp;
+                    <select id="sel_state">
+                        <option value="1">同时推送音视频</option>
+                        <option value="2">只推送视频</option>
+                        <option value="3">只推送音频</option>
+                        <option value="4">暂停</option>
+                        <option value="5">停止</option>
+                    </select>
+                    &nbsp;&nbsp;<input type="button" value="添加..." onclick="btn_add_new_stream()" class="ml-button-4"/>
+                </td></tr>
+                <tr height="10"><td nowrap>&nbsp;</td></tr>
+                <tr height="80" bgcolor="#FFFFFF"><td nowrap>
+                         注：<br /><font size=2>&nbsp;&nbsp;&nbsp;图像编码只有在整帧无损压缩未压缩，并且图像编码方式为H264，音频编码AAC才支持推流。<br />
+                         &nbsp;&nbsp;&nbsp;支持RTSP，RTMP推流协议。<br />
+                         &nbsp;&nbsp;&nbsp;可以保存到本地，比如设置URL为 D:\Screen.MP4 可保存MP4文件，支持MP4和MKV。</font>
+                         </td></tr>
+                     <tr height="10">
+                         <td nowrap></td>
+                     </tr>
+            </table>
+            </td></tr>
+        
+        <tr><td nowrap> <br><hr /><center><font color=#423344 size=2>&nbsp;&nbsp;CopyRight 2017-2018 Fanxiushu </font></center></td></tr></table>
+
+    <script type="text/javascript" src="/param_config.js"></script>
+    <script type="text/javascript">
+         function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+         document.body.className = ('ontouchstart' in window) ? 'mobile' : 'desktop';
+
+         setTitleName();
+         proxyChange([]);
+
+         var proto = "ws://";
+         if (document.location.protocol == 'https:') {
+             proto = "wss://"
+         }
+        var url = proto + window.location.host + '/wsock_stream?id=' + getQueryString("id");
+        var param = new param_config(url, function (msg) {
+            for (k in msg) {
+                if (k == 'proxy') {
+                  //  console.log('Param -' + msg[k]);
+                    proxyChange(msg[k]);
+                }
+                else if (k == 'param') {
+                    ///
+                    paramChange(msg[k]);
+                }
+            }
+        }, true);
+
+        function setTitleName() {
+            var tmp = getQueryString("desc");
+            if (tmp) {//alert(document.getElementById('title_name').InnerHTML);
+                document.getElementById('titleName').innerHTML = '<center><b>' + tmp + ' 远端推流设置 </b></center>';
+                document.title = tmp + ' 远端推流设置';
+            }
+        }
+
+        function proxyChange(proxy)
+        {
+            var er = proxy["err"]; //console.log('err='+er);//alert(er);
+            var urls = proxy["url_array"]; if (urls == null) urls = []; //console.log('urls='+urls);
+
+            var obj = document.getElementById('urls_display'); //console.log('proxy:' + obj);
+            if (er != null) {
+                document.getElementById('sp_deny').innerHTML = "&nbsp;&nbsp;<font color=#FF0000 size=3> [被控制端屏蔽了推流和保存功能]</font>";
+            }
+            ///
+            var htm = "<table width=100%  border=0 cellSpacing=0 cellPadding=0 ><tr  bgcolor=#DfAF41 style=\"font-size:12px;\" ><th align=left nowrap style=\"width:100px;\">唯一标志&nbsp;&nbsp;&nbsp;" +
+            "<th align=left nowrap style=\"width:180px;\">状态&nbsp;&nbsp;&nbsp;"+
+            "<th align=left nowrap>URL&nbsp;&nbsp;&nbsp;</tr>\n";
+
+            
+            for (var i = 0; i < urls.length; ++i) {
+                var u = urls[i];
+                var url = u["url"];
+                var uniqueid = u["uniqueid"];
+                var state = u["state"];
+
+                var str_state = "Unknown";
+                switch (state) {
+                    case 1:
+                        str_state = "<option value='1' selected=\"selected\">同时推送音视频</option>" +
+                            "><option value='2'>只推送视频</option><option value='3'>只推送音频</option>"+
+                            "<option value='4'>暂停</option><option value='5'>停止</option><option value='6' style='color:red;'>删除</option>";
+                        break;
+                    case 2:
+                        str_state = "<option value='1'>同时推送音视频</option>" +
+                            "><option value='2' selected=\"selected\">只推送视频</option><option value='3'>只推送音频</option>"+
+                            "<option value='4'>暂停</option><option value='5'>停止</option><option value='6' style='color:red;'>删除</option>";
+                        break;
+                    case 3:
+                        str_state = "<option value='1'>同时推送音视频</option>" +
+                            "><option value='2'>只推送视频</option><option value='3' selected=\"selected\">只推送音频</option>" +
+                            "<option value='4'>暂停</option><option value='5'>停止</option><option value='6' style='color:red;'>删除</option>";
+                        break;
+                    case 4:
+                        str_state = "<option value='1'>同时推送音视频</option>" +
+                            "><option value='2'>只推送视频</option><option value='3'>只推送音频</option>" +
+                            "<option value='4' selected=\"selected\">暂停</option><option value='5'>停止</option><option value='6' style='color:red;'>删除</option>";
+                        break;
+                    case 5:
+                        str_state = "<option value='1'>同时推送音视频</option>" +
+                            "><option value='2'>只推送视频</option><option value='3'>只推送音频</option>" +
+                            "<option value='4'>暂停</option><option value='5' selected=\"selected\">停止</option><option value='6' style='color:red;'>删除</option>";
+                        break;
+                }
+                var sel = "<select onchange='sel_state_change(this[selectedIndex].value, "+uniqueid + ")'>" +
+                   str_state +"</select>\n";
+                ///
+                var clr = "#a7a090";
+                if (i % 2) clr = "#a098a0";
+                htm += "<tr bgcolor="+clr +" style='font-size:15px;' height=\"32\"><td nowrap>"+uniqueid+
+                    "&nbsp;&nbsp;&nbsp;</td><td nowrap>"+
+                    sel + "</td>"+
+                    "<td nowrap>" + url +"&nbsp;&nbsp;</td></tr>\n";
+            }
+            ////
+            htm += "</table>";
+            obj.innerHTML = htm;
+        }
+        function paramChange(sp)
+        {
+            for (k in sp) {
+                if (k == "image") { ///
+                    var img = sp[k];
+                    var image_type = img["image_type"];
+                    var all_type = img["all_type"];
+                    var select_encoder = img["select_encoder"];
+                    ///
+                    var strAllType = "";
+                    switch (all_type) {
+                        case 0: strAllType = "未压缩"; break;
+                        case 1: strAllType = "LZO压缩"; break;
+                        case 2: strAllType = "ZLIB压缩"; break;
+                        case 3: strAllType = "LZMA压缩"; break;
+                        default: strAllType = "Unknown";
+                    }
+                    var strImgType = "";
+                    switch (image_type) {
+                        case 0: strImgType = "No Compress"; break;
+                        case 1: strImgType = "YUV420P"; break;
+                        case 2: strImgType = "JPEG"; break;
+                        case 3: strImgType = "YUV+JPEG"; break;
+                        case 4: strImgType = "H264";
+                            switch (select_encoder) {
+                                case 1: strImgType += " (x264)"; break;
+                                case 2: strImgType += " (openh264)"; break;
+                                case 3: strImgType += " (Intel_QSV)"; break;
+                                case 4: strImgType += " (Nvidia Encoder)"; break;
+                            }
+                            break;
+                        case 5: strImgType = "H265"; break;
+                        case 6: strImgType = "MPEG4"; break;
+                        case 7: strImgType = "MPEG2"; break;
+                        case 8: strImgType = "MPEG1"; break;
+                        case 9: strImgType = "VP8"; break;
+                        case 10: strImgType = "VP9"; break;
+                        case 11: strImgType = "LowPic"; break;
+                        default: strImgType = "Unknown";
+                    }
+                    ////
+                    var warn = "";
+                    var clr = "#705D7C";
+                    if (all_type != 0 || image_type != 4) { clr = "#FF1E00"; warn = ";&nbsp;不支持推流，请重新设置";}
+                    document.getElementById('warn_video').innerHTML = "&nbsp;图像编码:&nbsp;&nbsp;<font size=4 color="+clr+">" + strImgType +";&nbsp;整帧"+strAllType + warn+"</font>";
+                }
+                else if (k == "audio") { //
+                    var a = sp[k];
+                    var slot_index = a["index"];
+                    var compress = a["compress"];
+                    var volume = a["volume"];
+
+                    if (compress != null) {
+                        var type = compress["type"];
+                        var strType = "";
+                        switch (type) {
+                            case 1: strType = "AAC-LC"; break;
+                            case 2: strType = "AC3"; break;
+                            case 3: strType = "FLAC"; break;
+                            case 4: strType = "MP2"; break;
+                            default: strType = "Unknown";
+                        }
+                        ////
+                        var warn = "";
+                        var clr = "#705D7C";
+                        if (type != 1) { clr = "#FF1E00"; warn = ";&nbsp;不支持推流，请重新设置"; }
+                        document.getElementById('warn_audio').innerHTML = "&nbsp;音频编码:&nbsp;&nbsp;<font size=4 color=" + clr + ">" + strType + warn + "</font>";
+                    }
+                    /////
+                }
+            }
+
+        }
+        function sel_state_change(value, uniqueid)
+        {
+            //  alert(value +"uid="+uniqueid )
+            if (parseInt(value) == 6 && !confirm("确定要删除吗?")) {
+                param.query_streampush();
+                return;
+            }
+            /////
+            param.change_stream_state(uniqueid, value);
+            param.query_streampush();
+            param.query_param();
+            ///
+        }
+        function btn_add_new_stream()
+        {
+          //  alert("ooo");
+            var sel = document.getElementById('sel_state');
+            var state = sel.options[sel.selectedIndex].value;
+            var url = document.getElementById('txt_url').value;
+            if (url.length < 3) {
+                alert("URL字符串不能为空!"); return;
+            }
+
+            param.add_new_stream(url, state);
+            ///
+            param.query_streampush();
+            param.query_param();
+            /////
+        }
+        function image_set() {
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            var url = "/image_set.html?id=" + getQueryString("id") + "&desc=" + escape(desc) + "&back=stream_push.html"; // escape把中文转码
+            window.location.href=url;
+        }
+        function back_home() {
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            var url = "/htmlvideo?id=" + getQueryString("id") + "&desc=" + escape(desc);
+            window.location.href = url;
+        }
+        ////
+        </script>
+</body>
+</html>

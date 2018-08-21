@@ -1,0 +1,651 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <!-- by fanxiushu 2018-07-04 -->
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title> Remote image encoding settings </title>
+    <link href="/css/main_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body >
+    <table width=100%>
+        <tr>
+            <td nowrap>
+              <table bgcolor="#AABBCC" width="400" height="40" align="center"><tr><td nowrap id="titleName"><center> <b> Remote image encoding settings </b></center></td></tr></table>
+              <div style="font-size:18px; color:#103420;display:inline-block;">Current Config：&nbsp;</div>
+            <div align="center" style="display:inline-block;">&nbsp;<a href="javascript:void(0)" onclick="back_home()"><font size=4>Home</font></a>
+            &nbsp;&nbsp;&nbsp;<a href="/lang_english/about.html" target="_blank"><font size=4>About</font></a>
+            </div><br /><br />
+           <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+              <tr bgcolor=#DFDFBE style="font-size:18px;" height="50"><td nowrap>&nbsp;&nbsp;&nbsp;Image coding method: </td>
+                 <td style="font-size:20px;color:#FF00FF"  nowrap id="image_display">Waiting for query results...</td></tr> 
+              <tr bgcolor=#E0DFDE style="font-size:18px;" height="40"><td nowrap>&nbsp;&nbsp;&nbsp;Image coding details: &nbsp;&nbsp; </td>
+                  <td nowrap id="image_extra"></td></tr> 
+              <tr bgcolor=#BFDFBE style="font-size:18px;" height="50"><td nowrap>&nbsp;&nbsp;&nbsp;Audio coding: &nbsp;&nbsp; </td><td nowrap id="audio_display"></td></tr>
+              <tr bgcolor=#CFDFBE style="font-size:18px;" height="50"><td nowrap>&nbsp;&nbsp;&nbsp;Image coding: &nbsp;&nbsp; </td><td nowrap id="scale_display"></td></tr>
+               </table> 
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                     <tr bgcolor="#FFFFFE" style="font-size:15px;height:60px;width:100%"><td nowrap id="warn_display">
+                        
+                   </td><td nowrap id="warn_audio"></td>
+
+                     </tr>
+                </table>
+                
+            <br><hr /><br><div style="font-size:18px; bgcolor:#F03450;">Parameter configuration: &nbsp;</div><br />
+                 <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                     <tr bgcolor="#e1E0D0" height="40"><td nowrap>&nbsp;&nbsp;&nbsp;Image coding method: 
+                         <select id="sel_imagetype" onchange="sel_imagetype_change(this[selectedIndex].value)" >
+                         <option value="0">Raw Image</option>
+                         <option value="1">Convert to YUV420P</option>
+                         <option value="2">JPEG Compress</option>
+                         <option value="3">YUV+JPEG Compress</option>
+                         <option value="4">H264 Compress</option>
+                         <option value="5">H265 Compress</option>
+                         <option value="6">MPEG4 Compress</option>
+                         <option value="7">MPEG2 Compress</option>
+                         <option value="8">MPEG1 Compress</option>
+                         <option value="9">VP8 Compress</option>
+                         <option value="10">VP9 Compress</option>
+                         <option value="11">Special image</option>
+                                    </select>
+                         &nbsp;&nbsp;
+                         </td></tr>
+                     <tr bgcolor="#c1E0D0" height="36"><td nowrap>&nbsp;&nbsp;&nbsp;Priority: <select id="sel_priority">
+                             <option value="1" selected="selected">Image quality priority</option>
+                             <option value="2">Network bandwidth priority</option>
+                         </select>
+                         &nbsp;&nbsp;&nbsp;Entire frame lossless compression:
+                         <select id="sel_frametype">
+                             <option value="0" selected="selected">No Compress</option>
+                             <option value="1">LZO Compress</option>
+                             <option value="2">ZLIB Compress</option>
+                             <option value="3">LZMA Compress</option>
+                                                    </select>
+                                                       </td></tr>
+                     <tr  height="35" bgcolor="#D1D1B1" id="tr_h264" >
+                         <td nowrap height="35" ><table ><tr><td nowrap id="tr_264lib">&nbsp;&nbsp;&nbsp;H264 library selection:
+                             <select id="sel_h264lib" onchange="sel_h264lib_change(this[selectedIndex].value)">
+                             <option value="1">x264</option>
+                             <option value="2">openh264</option>
+                             <option value="3">Intel QSV(Only Support Intel Display Card)</option>
+                             <option value="4">Nvidia Encoder(Only Support Nvidia Display Card)</option>
+                            </select></td><td nowrap id="tr_present">
+                             &nbsp;&nbsp;&nbsp;Present: 
+                                <select id="sel_present">
+                                 <option value="0">ultrafast</option>
+                                 <option value="1">superfast</option>
+                                 <option value="2">veryfast</option>
+                                 <option value="3">faster</option>
+                                 <option value="4">fast</option>
+                                 <option value="5">medium</option>
+                                 <option value="6">slow</option>
+                                 <option value="7">slower</option>
+                                 <option value="8">veryslow</option>
+                                 <option value="9">placeto</option>
+                                                             </select>
+                         </td></tr></table></td>
+                     </tr>
+                     <tr height="35" bgcolor="#E1D1D1" id="tr_val">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;Image quality value:<input type="text" style="width:80px;" id="txt_crf" value="23" class="ml-button-4"/>
+                             &nbsp;&nbsp;&nbsp;Keyframe interval:<input type="text" style="width:80px;" id="txt_keymax" value="100" class="ml-button-4"/>
+                             &nbsp;&nbsp;&nbsp;Coding bit rate:<input type="text" style="width:80px;" id="txt_bitrate" value="5000" class="ml-button-4"/>&nbsp;Kbps
+                             &nbsp;&nbsp;&nbsp;Number of coded threads:<input type="text" style="width:50px;" id="txt_thread" value="1" class="ml-button-4" />&nbsp;
+                         </td>
+                     </tr>
+                     <tr height="35" bgcolor="#E1D1D1" id="tr_lowpic" style="display:none">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;Special image compression type:
+                             <select id="sel_lowpic">
+                                 <option value="1">Grayscale Image</option>
+                                 <option value="2">256 Color Image</option>
+                                 <option value="3">16 Color Image</option>
+                                 <option value="4">8 Color Image</option>
+                                 <option value="5">5 Color Image</option>
+                                 <option value="6">Mono Image</option>
+                             </select>
+                         </td>
+                     </tr>
+                     <tr height="35" bgcolor="#E1D1D1" id="tr_jpeg" style="display:none">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;JPEG compression percentage:<input type="text" width="30" id="txt_jpeg" value="70" class="ml-button-4"/>
+                         </td>
+                     </tr>
+                     <tr height="16" bgcolor="#FFFFFF"> 
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="50" bgcolor="#E1F1E1" >
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;Audio encoding:
+                             <select id="sel_audiotype">
+                                 <option value="1">AAC-LC</option>
+                                 <option value="2">AC3</option>
+                                 <option value="3">FLAC</option>
+                                 <option value="4">MP2</option>
+                             </select>
+                             &nbsp;&nbsp;&nbsp;&nbsp; Coding bit rate:<input type="text" width="30" id="txt_audiobitrate" class="ml-button-4"/>&nbsp;Kbps
+                         </td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1b1D1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;First audio:&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check1" value="checked" />&nbsp;Start&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;Volume:&nbsp;<input type="text" style="width:80px;" id="audio_vol1" value="1.0" class="ml-button-4" />&nbsp;
+                             </td><td nowrap id="audio_text1" width="220">&nbsp;&nbsp;<font size="2" color="#334455">Computer internal voice&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state1">state:</td>
+                             </tr></table></td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1d1d1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;Second audio:&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check2" value="checked" />&nbsp;Start&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;Volume:&nbsp;<input type="text" style="width:80px;" id="audio_vol2" value="1.0" class="ml-button-4" />&nbsp;
+                             </td><td nowrap width="220">&nbsp;&nbsp;<font size="2" color="#334455">Auxiliary microphone 2&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state2">state:</td>
+                         </tr></table></td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1e1e1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;Third audio:&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check3" value="checked" />&nbsp;Start&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;Volume:&nbsp;<input type="text" style="width:80px;" id="audio_vol3" value="1.0" class="ml-button-4" />&nbsp;
+                          </td><td nowrap width="220">&nbsp;&nbsp;<font size="2" color="#334455">Auxiliary microphone 3&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state3">state:</td>
+                         </tr></table></td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1d1e1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;Forth audio:&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check4" value="checked" />&nbsp;Start&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;Volume:&nbsp;<input type="text" style="width:80px;" id="audio_vol4" value="1.0" class="ml-button-4" />&nbsp;
+                          </td><td nowrap width="220">&nbsp;&nbsp;<font size="2" color="#334455">Auxiliary microphone 4&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state4">state:</td>
+                         </tr></table></td>
+                     </tr>
+                     <tr height="16" bgcolor="#FFFFFF">
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="50" bgcolor="#D0D0E0">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;Output Image Width:<input type="text" id="txt_scale_width" class="ml-button-4"/>
+                             &nbsp;&nbsp;&nbsp;Output Image Height:<input type="text" id="txt_scale_height" class="ml-button-4"/>
+                         </td>
+                     </tr>
+                     <tr bgcolor="#E1E1D0" height="40">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;Image acquisition interval:<input type="text" id="txt_grab_msec" class="ml-button-4" />&nbsp;Millisecond &nbsp;&nbsp;Usually set to: 33 (30fps), 40 (25FPS), etc.
+                         </td>
+                     </tr>
+                     <tr height="40" bgcolor="D1D1E3">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;Desktop mouse status:
+                             <select id="sel_cursor_state">
+                                 <option value="1">Show Cursor</option>
+                                 <option value="2">Hide Cursor</option>
+                             </select>
+                         </td>
+                     </tr>
+                     <tr height="10">
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="80" bgcolor="#FFFFFF"><td nowrap>
+                         Note: <br /><font size=2>&nbsp;&nbsp;&nbsp;Image coding only supports the client control of web pages when the whole frame is lossless and uncompressed, and the image coding mode is H264, MPEG1, VP8, H264 supports push stream.<br />
+                         &nbsp;&nbsp;&nbsp;Audio coding only supports AAC-LC and MP2 client pages, and AAC-LC supports streaming. In order to push the flow normally, the key frame interval is set below 50.<br />
+                         &nbsp;&nbsp;&nbsp;Native client programs support all encoding methods.</font>
+                         </td></tr>
+                     <tr height="10">
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="50">
+                         <td nowrap align="center">
+                             <input type="button" onclick="paramModify()" style="width:180px;height:40px;font-size:24px;" value="Modify configuration" class="ml-button-4" id="btn_modify"/>
+                         </td>
+                     </tr>
+                 </table>
+            </td> 
+        </tr>
+        <hr />
+        <tr><td nowrap> <br><center><font color=#123344 size=2>&nbsp;&nbsp;CopyRight 2017-2018 Fanxiushu </font></center></td></tr></table>
+
+    <script type="text/javascript" src="/param_config.js"></script>
+    <script type="text/javascript">
+         function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        document.body.className = ('ontouchstart' in window) ? 'mobile' : 'desktop';
+        
+        var proto = "ws://";
+        if (document.location.protocol == 'https:') {
+            proto="wss://"
+        }
+        var url = proto + window.location.host + '/wsock_stream?id=' + getQueryString("id");
+        var param = new param_config(url, function (msg) {
+            for (k in msg) {
+                if (k == 'param') {
+                  //  console.log('Param -' + msg[k]);
+                    paramChange(msg[k]);
+                }
+            }
+        }, false);
+        ///
+
+        setTitleName(); //
+     //   sel_imagetype_change(4); ///
+        
+        function setTitleName(){
+            var tmp=getQueryString("desc"); 
+            if(tmp) {//alert(document.getElementById('title_name').InnerHTML);
+                document.getElementById('titleName').innerHTML = '<center><b>' + tmp + ' Set image coding </b></center>';
+                document.title = tmp + ' Set image coding';
+            }
+        }
+
+        function sel_imagetype_change(value)
+        {
+             var tr1 = document.getElementById('tr_h264');
+             var tr3 = document.getElementById('tr_val');
+             if(value==4 || value==5 ){ //H264 , H265
+                  tr1.style.display='';
+                  var tr2 = document.getElementById('tr_264lib');
+                  if(value==4) tr2.style.display=''; else tr2.style.display='none';
+             }
+             else{
+                  tr1.style.display='none';
+             }
+             if(value<4 || value==11){tr3.style.display='none';}
+             else{tr3.style.display='';}
+             ///
+             var tr4 = document.getElementById('tr_lowpic');
+             if(value==11) tr4.style.display='';else tr4.style.display='none';
+             ////
+             var tr5 = document.getElementById('tr_jpeg');
+             if(value>=2&& value<=3) tr5.style.display='';else tr5.style.display='none';
+        }
+        function sel_h264lib_change(value)
+        {
+            var tr3 = document.getElementById('tr_present');
+            if(value==1 || value==3)  {tr3.style.display=''; } else tr3.style.display='none';
+        }
+        function sel_selected_value(id, value)
+        {
+            var obj = document.getElementById(id);
+            for (var i = 0; i < obj.options.length; ++i) {
+                if (obj.options[i].value == value) {
+                    obj.options[i].selected = true;
+                    break;
+                }
+            }
+        }
+        function sel_get_selected_value(id)
+        {
+            var obj = document.getElementById(id);
+            return obj.options[obj.selectedIndex].value;
+        }
+        function paramChange(sp)
+        {
+            var warn_color = "#DDDDDD";
+            var img_warn_str = null;
+            var audio_warn_str = null;
+            ///
+            for (k in sp) {
+                if (k == "image") { ///
+                    var img=sp[k];
+                    var image_type = img["image_type"];
+                    var all_type = img["all_type"];
+                    var priority = img["priority"];
+                    var jpeg_quailty = img["jpeg_quailty"];
+                    var select_encoder = img["select_encoder"];
+                    var lowpic_type = img["lowpic_type"];
+                    var preset = img["preset"];
+                    var rf_constant = img["rf_constant"];
+                    var keyint_max = img["keyint_max"];
+                    var bit_rate = img["bit_rate"];
+
+                    //
+                    var strAllType = "";
+                    switch (all_type) {
+                        case 0: strAllType = "No Compress"; break;
+                        case 1: strAllType = "LZO Compress"; break;
+                        case 2: strAllType = "ZLIB Compress"; break;
+                        case 3: strAllType = "LZMA Compress"; break;
+                        default: strAllType = "Unknown";
+                    }
+
+                    if (all_type != 0) {
+                        img_warn_str = "The current external frame is used " + strAllType + " Encoding, supporting native clients only.";
+                        warn_color = "#FF0909";
+                    }
+                    else {
+                        if (image_type == 4) { img_warn_str = "current image coding supports web client control, push flow, native clients."; warn_color = "#0ECCEE"; }
+                        else if (image_type == 8 || image_type == 9) { img_warn_str = "The current image coding supports web client control, native clients, does not push flow."; warn_color = "#700C0B"; }
+                        else { img_warn_str = "The current image coding only supports native clients."; warn_color = "#FF4909"; }
+                    }
+                    ////
+                 //   console.log('imgtype=' + image_type);
+                    var strImgType = "";
+                    switch (image_type) {
+                        case 0: strImgType = "No Compress"; break;
+                        case 1: strImgType = "YUV420P"; break;
+                        case 2: strImgType = "JPEG"; break;
+                        case 3: strImgType = "YUV+JPEG"; break;
+                        case 4: strImgType = "H264";
+                            switch (select_encoder) {
+                                case 1: strImgType += " (x264)"; break;
+                                case 2: strImgType += " (openh264)"; break;
+                                case 3: strImgType += " (Intel_QSV)"; break;
+                                case 4: strImgType += " (Nvidia Encoder)"; break;
+                            }
+                            break;
+                        case 5: strImgType = "H265"; break;
+                        case 6: strImgType = "MPEG4"; break;
+                        case 7: strImgType = "MPEG2"; break;
+                        case 8: strImgType = "MPEG1"; break;
+                        case 9: strImgType = "VP8"; break;
+                        case 10: strImgType = "VP9"; break;
+                        case 11: strImgType = "LowPic"; break;
+                        default: strImgType = "Unknown";
+                    }
+
+                    sel_selected_value('sel_imagetype', image_type);
+                    sel_imagetype_change(image_type);
+                    sel_selected_value('sel_frametype', all_type);
+
+                    document.getElementById('image_display').innerHTML = strImgType + ";&nbsp;&nbsp;&nbsp;Entire Frame&nbsp;" + strAllType + ";&nbsp;&nbsp;&nbsp;";
+                    if (image_type >= 4 && image_type <= 10) { // H264-VP9
+                        var thread_count = (priority >> 2) & 0x3F; ///
+                        priority = priority & 0x03; ///
+                        if (priority == 1) {
+                            document.getElementById('image_display').innerHTML += "Image quality first;&nbsp;&nbsp;&nbsp;";
+                        }
+                        else {
+                            document.getElementById('image_display').innerHTML += "Network bandwidth priority;&nbsp;&nbsp;&nbsp;";
+                        }
+                        ///
+                        sel_selected_value('sel_priority', priority);
+
+                        /////
+                        if ((image_type == 4 && (select_encoder == 1|| select_encoder ==3 )) || image_type == 5) {// x264 or x265
+                            var strP = "";
+                            switch (preset) {
+                                case 0: strP = "ultrafast"; break;
+                                case 1: strP = "superfast"; break;
+                                case 2: strP = "veryfast"; break;
+                                case 3: strP = "faster"; break;
+                                case 4: strP = "fast"; break;
+                                case 5: strP = "medium"; break;
+                                case 6: strP = "slow"; break;
+                                case 7: strp = "slower"; break;
+                                case 8: strP = "veryslow"; break;
+                                case 9: strP = "placeto"; break;
+                                default: strP = "unknown";
+                            }
+                            
+                            ///
+                            document.getElementById('image_display').innerHTML += strP+"&nbsp;&nbsp;&nbsp;";
+                        }
+                        if (image_type == 4 || image_type == 5) {
+                            sel_selected_value('sel_present', preset);
+                            if (image_type == 4) {
+                                sel_selected_value('sel_h264lib', select_encoder);
+                                sel_h264lib_change(select_encoder);
+                            }
+                            ////
+                        }
+                        ///
+                        document.getElementById('txt_crf').value = rf_constant;
+                        document.getElementById('txt_keymax').value = keyint_max;
+                        document.getElementById('txt_bitrate').value = (bit_rate / 1024).toFixed(0);
+                        document.getElementById('txt_thread').value = thread_count;
+
+                        /////
+                        var extr = "Image quality parameter&nbsp;" + rf_constant + ";&nbsp;&nbsp;&nbsp;Keyframe interval&nbsp;" + keyint_max +
+                            ";&nbsp;&nbsp;&nbsp;Bitrate:&nbsp;" + (bit_rate / 1024).toFixed(0) + "&nbsp;Kbps;&nbsp;"+
+                            "&nbsp;Number of coded threads&nbsp;" + thread_count + "&nbsp;";
+                        document.getElementById('image_extra').innerHTML = extr;
+                            
+                    }
+                    else {
+                        if (image_type == 2 || image_type == 3) {
+                            document.getElementById('image_extra').innerHTML = "JPEG image compression percentage:" + jpeg_quailty + "&nbsp;&nbsp;";;
+                            ///
+                            document.getElementById('txt_jpeg').value = jpeg_quailty;
+                            ///
+                        }
+                        else if (image_type == 11) {
+                            var s = "";
+                            switch (lowpic_type) {
+                                case 1: s = "Grayscale Image"; break;
+                                case 2: s = "256 Color Image"; break;
+                                case 3: s = "16 Color Image"; break;
+                                case 4: s = "8 Color Image"; break;
+                                case 5: s = "4 Color Image"; break;
+                                case 6: s = "Mono Image"; break;
+                            }
+                            document.getElementById('image_extra').innerHTML = "Special image type:&nbsp;&nbsp;" + s + "&nbsp;&nbsp;";;
+                            ////
+                            sel_selected_value('sel_lowpic', lowpic_type);
+                            /////
+                        }
+                        else document.getElementById('image_extra').innerHTML = "";
+
+                    }
+                }
+                ////
+                if (k == "audio") {
+                    var a = sp[k];
+                    var slot_index = a["index"];
+                    var compress = a["compress"];
+                    var volume = a["volume"];
+
+                    if (compress != null) {
+                        var type = compress["type"];
+                        var bit_rate = compress["bit_rate"];
+                        var strType = "";
+                        switch (type) {
+                            case 1: strType = "AAC-LC"; break;
+                            case 2: strType = "AC3"; break;
+                            case 3: strType = "FLAC"; break;
+                            case 4: strType = "MP2"; break;
+                            default: strType = "Unknown";
+                        }
+                        document.getElementById('audio_display').innerHTML =
+                            "Audio coding mode&nbsp;" + strType + ";&nbsp;&nbsp;&nbsp;Coding bit rate:&nbsp;" + (bit_rate / 1000).toFixed(0) + "&nbsp;Kbps&nbsp;&nbsp;";
+                        ////
+                        sel_selected_value('sel_audiotype', type);
+                        document.getElementById('txt_audiobitrate').value = (bit_rate / 1000).toFixed(0);
+                        //////
+                        if (type == 1) { audio_warn_str = "Current audio coding supports web client, push flow, and native clients."; warn_color = "#0ECCEE"; }
+                        else if (type == 4) { audio_warn_str = "Current audio coding supports web client and native client."; warn_color = "#700C0B"; }
+                        else { audio_warn_str = "The current audio encoding only supports native clients."; warn_color = "#FF4909"; }
+
+                    }
+                    /////
+                    if (volume != null) {
+                        var enable = volume["enable"];
+                        var state = volume["state"];
+                        var value = volume["value"];
+                        var type = volume["type"];
+                        console.log('enable=' + enable + ',state=' + state + ',type='+type+', vol=' + value + ', index=' + slot_index);
+                        if (slot_index >= 1 && slot_index <= 4) {
+                            document.getElementById('audio_check' + slot_index).checked = enable ? true : false;
+                            document.getElementById('audio_vol' + slot_index).value = (value / 100).toFixed(1);
+                            if (slot_index == 1) {
+                                if (type == 2) document.getElementById('audio_text1').innerHTML = "&nbsp;&nbsp;<font size=\"2\" color=\"#334455\">Master microphone&nbsp;&nbsp;</font>";
+                                else document.getElementById('audio_text1').innerHTML = "&nbsp;&nbsp;<font size=\"2\" color=\"#334455\">Computer internal voice&nbsp;&nbsp;</font>";
+                            }
+                            /////
+                            var str_state = "<font color=#304080>Closed</font>"; if (state == 1) str_state = "<font color=#a02cf0>Opened</font>"; else if (state == 2) str_state = "<font color=#Ff0011>Error</font>";
+                            document.getElementById('audio_state' + slot_index).innerHTML = "State:&nbsp;" + str_state +"&nbsp;";
+                        }
+                    }
+
+                    /////
+                }
+                ///
+                if (k == "scale") {
+                    var scale=sp[k];
+                    var screen_width = scale["screen_width"];
+                    var screen_height = scale["screen_height"];
+                    var org_width = scale["org_width"];
+                    var org_height = scale["org_height"];
+                    var org_grab_msec = scale["org_grab_msec"];
+                    org_cursor_state = scale["org_cursor_state"];
+                    if (screen_width <= 0 && screen_height <= 0) {
+                        screen_width = org_width;
+                        screen_height = org_height;
+                    }
+                    ///
+                    document.getElementById('scale_display').innerHTML =
+                        "Output Image Width & Height:&nbsp;" + screen_width +"X"+screen_height+";&nbsp;&nbsp;&nbsp;"+
+                        "Raw Image Width & Height:&nbsp;" + org_width + "X" + org_height + ";&nbsp;&nbsp;&nbsp;" +
+                        "Image acquisition interval:" + org_grab_msec + "&nbsp;msecond&nbsp;&nbsp;&nbsp;";
+                    ////
+                    document.getElementById('txt_scale_width').value = screen_width;
+                    document.getElementById('txt_scale_height').value = screen_height;
+                    document.getElementById('txt_grab_msec').value = org_grab_msec;
+                    sel_selected_value('sel_cursor_state', org_cursor_state);
+                    /////
+                }
+                //////
+            }
+            /////
+            var obj = document.getElementById('warn_display');
+            if (img_warn_str) obj.innerHTML = "&nbsp;&nbsp;&nbsp;Note1：<font color=" + warn_color + " size=4>" + img_warn_str + "</font>";
+            if (audio_warn_str) document.getElementById('warn_audio').innerHTML =
+                "&nbsp;&nbsp;&nbsp;Note2：<font color=" + warn_color + " size=4>" + audio_warn_str + "</font>";
+            /////////
+            document.getElementById('btn_modify').value = "Modify Config";
+        }
+        function paramModify()
+        {
+            document.getElementById('btn_modify').value = "Wait for the result";
+            ///
+            var image_type = sel_get_selected_value('sel_imagetype'); //alert(image_type);
+            var all_type = sel_get_selected_value('sel_frametype');
+            var priority = sel_get_selected_value('sel_priority');
+            var present = sel_get_selected_value('sel_present');
+            var select_encoder = sel_get_selected_value('sel_h264lib');
+            var lowpic_type = sel_get_selected_value('sel_lowpic');
+            var cursor_state = sel_get_selected_value('sel_cursor_state');
+
+            var hdr = new Uint8Array(18);
+            var i;
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            ///
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 1; // image type
+            hdr[3] = 1; // SET Param
+            hdr[4] = all_type; /// all_
+            hdr[5] = image_type; ////
+            if (image_type >= 2 && image_type <= 3) { // JPEG or YUV+JPEG
+                hdr[6] = parseInt(document.getElementById('txt_jpeg').value);
+                ////
+            }
+            else if (image_type == 11) {// LOWPIC
+                hdr[6] = lowpic_type;
+                hdr[7] = parseInt(document.getElementById('txt_jpeg').value); ///
+                ///
+            }
+            else if (image_type >= 4 && image_type <= 10) {
+                if (image_type == 4) hdr[6] = select_encoder; // x264 or openh264
+                else hdr[6] = 0; ////
+                if (image_type == 4 || image_type == 5) { /// h264 or h265, preset
+                    hdr[7] = present;
+                }
+                else hdr[7] = 255;
+                ///
+                hdr[8] = parseInt(document.getElementById('txt_crf').value); ////crf
+                var keymax = parseInt(document.getElementById('txt_keymax').value);
+                var bitrate = parseInt(document.getElementById('txt_bitrate').value) * 1024;
+                var thread_count = parseInt(document.getElementById('txt_thread').value);
+
+                param.htons(hdr, 9, keymax);
+                param.htonl(hdr, 11, bitrate);
+                hdr[15] = (priority & 0x03) | ((thread_count <<2) &0xFC); // bit0-bit1;  bit2-bit7
+                ////
+
+            }
+
+            param.send_header(hdr);
+            ////
+
+            /// audio compress
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 2; // audio type
+            hdr[3] = 1; // SET Param
+            hdr[4] = 2; /// compress type
+            hdr[5] = 0; // slot index
+            var compresstype = sel_get_selected_value('sel_audiotype');
+            hdr[6] = compresstype;
+            param.htonl(hdr, 7, parseInt(document.getElementById('txt_audiobitrate').value) * 1000);
+
+            param.send_header(hdr);
+
+            //audio volume
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 2; // audio type
+            hdr[3] = 1; // SET Param
+            hdr[4] = 1; /// volume type
+            for (i = 1; i <= 4; ++i) { ///
+                hdr[5] = i; // slot index
+                hdr[6] = document.getElementById('audio_check' + i).checked ? 1 : 0;
+                var vol = parseInt(document.getElementById('audio_vol' + i).value * 100);
+                param.htonl(hdr, 7, vol);
+                ///
+                param.send_header(hdr);
+            }
+
+            ///scale
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 3; // scale type
+            hdr[3] = 1; // SET Param
+            param.htons(hdr, 4, parseInt(document.getElementById('txt_scale_width').value));
+            param.htons(hdr, 6, parseInt(document.getElementById('txt_scale_height').value));
+
+            param.send_header(hdr);
+
+            /// control
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 5; // control type
+            hdr[3] = 1; // SET Param
+            hdr[4] = 4; // set grab msec
+            hdr[5] = 0; // submethod
+            param.htons(hdr, 6, parseInt(document.getElementById('txt_grab_msec').value));
+            
+            param.send_header(hdr);
+            
+            if (org_cursor_state != cursor_state) {
+                hdr[4] = 2; // hide or show cursor
+                param.send_header(hdr); ///
+            }
+            /////
+            param.query_param();
+
+        }
+        function back_home() {
+            var back = getQueryString("back"); 
+            var url;
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            if (back == null) {
+                url = "/htmlvideo?id=" + getQueryString("id") + "&desc=" + escape(desc);
+            }
+            else {
+                url = back + "?id=" + getQueryString("id") + "&desc=" + escape(desc);
+            }
+            window.location.href = url;
+        }
+    </script>
+</body> 
+</html>

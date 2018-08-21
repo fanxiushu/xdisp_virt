@@ -1,0 +1,651 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <!-- by fanxiushu 2018-07-04 -->
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title> 远程图像编码设置 </title>
+    <link href="css/main_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body >
+    <table width=100%>
+        <tr>
+            <td nowrap>
+              <table bgcolor="#AABBCC" width="400" height="40" align="center"><tr><td nowrap id="titleName"><center> <b> 远程图像编码设置 </b></center></td></tr></table>
+              <div style="font-size:18px; color:#103420;display:inline-block;">当前配置：&nbsp;</div>
+            <div align="center" style="display:inline-block;">&nbsp;<a href="javascript:void(0)" onclick="back_home()"><font size=4>返回主页</font></a>
+            &nbsp;&nbsp;&nbsp;<a href="/about.html" target="_blank"><font size=4>关于</font></a>
+            </div><br /><br />
+           <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+              <tr bgcolor=#DFDFBE style="font-size:18px;" height="50"><td nowrap>&nbsp;&nbsp;&nbsp;图像编码方式:  </td>
+                 <td style="font-size:20px;color:#FF00FF"  nowrap id="image_display">等待查询结果...</td></tr> 
+              <tr bgcolor=#E0DFDE style="font-size:18px;" height="40"><td nowrap>&nbsp;&nbsp;&nbsp;图像编码详细信息:  &nbsp;&nbsp; </td>
+                  <td nowrap id="image_extra"></td></tr> 
+              <tr bgcolor=#BFDFBE style="font-size:18px;" height="50"><td nowrap>&nbsp;&nbsp;&nbsp;音频编码:  &nbsp;&nbsp; </td><td nowrap id="audio_display"></td></tr>
+              <tr bgcolor=#CFDFBE style="font-size:18px;" height="50"><td nowrap>&nbsp;&nbsp;&nbsp;图像缩放:  &nbsp;&nbsp; </td><td nowrap id="scale_display"></td></tr>
+               </table> 
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                     <tr bgcolor="#FFFFFE" style="font-size:15px;height:60px;width:100%"><td nowrap id="warn_display">
+                        
+                   </td><td nowrap id="warn_audio"></td>
+
+                     </tr>
+                </table>
+                
+            <br><hr /><br><div style="font-size:18px; bgcolor:#F03450;">参数配置：&nbsp;</div><br />
+                 <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                     <tr bgcolor="#e1E0D0" height="40"><td nowrap>&nbsp;&nbsp;&nbsp;图像编码方式：
+                         <select id="sel_imagetype" onchange="sel_imagetype_change(this[selectedIndex].value)" >
+                         <option value="0">原始图像</option>
+                         <option value="1">转成YUV420P</option>
+                         <option value="2">JPEG压缩</option>
+                         <option value="3">YUV+JPEG压缩</option>
+                         <option value="4">H264压缩</option>
+                         <option value="5">H265压缩</option>
+                         <option value="6">MPEG4压缩</option>
+                         <option value="7">MPEG2压缩</option>
+                         <option value="8">MPEG1压缩</option>
+                         <option value="9">VP8压缩</option>
+                         <option value="10">VP9压缩</option>
+                         <option value="11">特殊图像</option>
+                                    </select>
+                         &nbsp;&nbsp;
+                         </td></tr>
+                     <tr bgcolor="#c1E0D0" height="36"><td nowrap>&nbsp;&nbsp;&nbsp;优先：<select id="sel_priority">
+                             <option value="1" selected="selected">图像质量优先</option>
+                             <option value="2">网络带宽优先</option>
+                         </select>
+                         &nbsp;&nbsp;&nbsp;整帧无损压缩方式：
+                         <select id="sel_frametype">
+                             <option value="0" selected="selected">无压缩</option>
+                             <option value="1">LZO压缩</option>
+                             <option value="2">ZLIB压缩</option>
+                             <option value="3">LZMA压缩</option>
+                                                    </select>
+                                                       </td></tr>
+                     <tr  height="35" bgcolor="#D1D1B1" id="tr_h264" >
+                         <td nowrap height="35" ><table ><tr><td nowrap id="tr_264lib">&nbsp;&nbsp;&nbsp;H264库选择：
+                             <select id="sel_h264lib" onchange="sel_h264lib_change(this[selectedIndex].value)">
+                             <option value="1">x264</option>
+                             <option value="2">openh264</option>
+                             <option value="3">Intel QSV(只支持Intel显卡)</option>
+                             <option value="4">Nvidia Encoder(只支持Nvidia显卡)</option>
+                            </select></td><td nowrap id="tr_present">
+                             &nbsp;&nbsp;&nbsp;Present: 
+                                <select id="sel_present">
+                                 <option value="0">ultrafast</option>
+                                 <option value="1">superfast</option>
+                                 <option value="2">veryfast</option>
+                                 <option value="3">faster</option>
+                                 <option value="4">fast</option>
+                                 <option value="5">medium</option>
+                                 <option value="6">slow</option>
+                                 <option value="7">slower</option>
+                                 <option value="8">veryslow</option>
+                                 <option value="9">placeto</option>
+                                                             </select>
+                         </td></tr></table></td>
+                     </tr>
+                     <tr height="35" bgcolor="#E1D1D1" id="tr_val">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;图像质量数值：<input type="text" style="width:80px;" id="txt_crf" value="23" class="ml-button-4"/>
+                             &nbsp;&nbsp;&nbsp;关键帧间隔：<input type="text" style="width:80px;" id="txt_keymax" value="100" class="ml-button-4"/>
+                             &nbsp;&nbsp;&nbsp;编码比特率：<input type="text" style="width:80px;" id="txt_bitrate" value="5000" class="ml-button-4"/>&nbsp;Kbps
+                             &nbsp;&nbsp;&nbsp;编码线程数：<input type="text" style="width:50px;" id="txt_thread" value="1" class="ml-button-4" />&nbsp;
+                         </td>
+                     </tr>
+                     <tr height="35" bgcolor="#E1D1D1" id="tr_lowpic" style="display:none">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;特殊图像压缩类型：
+                             <select id="sel_lowpic">
+                                 <option value="1">灰度图</option>
+                                 <option value="2">256色图</option>
+                                 <option value="3">16色图</option>
+                                 <option value="4">8色图</option>
+                                 <option value="5">5色图</option>
+                                 <option value="6">单色图</option>
+                             </select>
+                         </td>
+                     </tr>
+                     <tr height="35" bgcolor="#E1D1D1" id="tr_jpeg" style="display:none">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;JPEG压缩百分比：<input type="text" width="30" id="txt_jpeg" value="70" class="ml-button-4"/>
+                         </td>
+                     </tr>
+                     <tr height="16" bgcolor="#FFFFFF"> 
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="50" bgcolor="#E1F1E1" >
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;音频编码方式：
+                             <select id="sel_audiotype">
+                                 <option value="1">AAC-LC</option>
+                                 <option value="2">AC3</option>
+                                 <option value="3">FLAC</option>
+                                 <option value="4">MP2</option>
+                             </select>
+                             &nbsp;&nbsp;&nbsp;&nbsp; 编码比特率：<input type="text" width="30" id="txt_audiobitrate" class="ml-button-4"/>&nbsp;Kbps
+                         </td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1b1D1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;第一路音频：&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check1" value="checked" />&nbsp;开启&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;音量:&nbsp;<input type="text" style="width:80px;" id="audio_vol1" value="1.0" class="ml-button-4" />&nbsp;
+                             </td><td nowrap id="audio_text1" width="220">&nbsp;&nbsp;<font size="2" color="#334455">电脑内部声音&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state1">state:</td>
+                             </tr></table></td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1d1d1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;第二路音频：&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check2" value="checked" />&nbsp;开启&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;音量:&nbsp;<input type="text" style="width:80px;" id="audio_vol2" value="1.0" class="ml-button-4" />&nbsp;
+                             </td><td nowrap width="220">&nbsp;&nbsp;<font size="2" color="#334455">辅助麦克风2&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state2">state:</td>
+                         </tr></table></td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1e1e1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;第三路音频：&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check3" value="checked" />&nbsp;开启&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;音量:&nbsp;<input type="text" style="width:80px;" id="audio_vol3" value="1.0" class="ml-button-4" />&nbsp;
+                          </td><td nowrap width="220">&nbsp;&nbsp;<font size="2" color="#334455">辅助麦克风3&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state3">state:</td>
+                         </tr></table></td>
+                     </tr>
+                     <tr height="30" bgcolor="#c1d1e1">
+                         <td nowrap><table><tr><td nowrap>
+                             &nbsp;&nbsp;&nbsp;第四路音频：&nbsp;&nbsp;
+                             <label><input type="checkbox" id="audio_check4" value="checked" />&nbsp;开启&nbsp;</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;音量:&nbsp;<input type="text" style="width:80px;" id="audio_vol4" value="1.0" class="ml-button-4" />&nbsp;
+                          </td><td nowrap width="220">&nbsp;&nbsp;<font size="2" color="#334455">辅助麦克风4&nbsp;&nbsp;</font></td>
+                             <td nowrap id="audio_state4">state:</td>
+                         </tr></table></td>
+                     </tr>
+                     <tr height="16" bgcolor="#FFFFFF">
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="50" bgcolor="#D0D0E0">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;输出图像宽度：<input type="text" id="txt_scale_width" class="ml-button-4"/>
+                             &nbsp;&nbsp;&nbsp;输出图像高度：<input type="text" id="txt_scale_height" class="ml-button-4"/>
+                         </td>
+                     </tr>
+                     <tr bgcolor="#E1E1D0" height="40">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;图像采集间隔：<input type="text" id="txt_grab_msec" class="ml-button-4" />&nbsp;毫秒 &nbsp;&nbsp;通常设置为: 33(30fps), 40(25fps) 等
+                         </td>
+                     </tr>
+                     <tr height="40" bgcolor="D1D1E3">
+                         <td nowrap>
+                             &nbsp;&nbsp;&nbsp;桌面鼠标状态：
+                             <select id="sel_cursor_state">
+                                 <option value="1">显示鼠标</option>
+                                 <option value="2">隐藏鼠标</option>
+                             </select>
+                         </td>
+                     </tr>
+                     <tr height="10">
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="80" bgcolor="#FFFFFF"><td nowrap>
+                         注：<br /><font size=2>&nbsp;&nbsp;&nbsp;图像编码只有在整帧无损压缩未压缩，并且图像编码方式为H264，MPEG1，VP8才支持网页客户端控制，H264支持推流。<br />
+                         &nbsp;&nbsp;&nbsp;音频编码只有AAC-LC和MP2才支持网页客户端，AAC-LC支持推流。为了正常推流，把关键帧间隔设置小于50以下。<br />
+                         &nbsp;&nbsp;&nbsp;原生客户端程序支持所有编码方式</font>
+                         </td></tr>
+                     <tr height="10">
+                         <td nowrap></td>
+                     </tr>
+                     <tr height="50">
+                         <td nowrap align="center">
+                             <input type="button" onclick="paramModify()" style="width:180px;height:40px;font-size:24px;" value="修改配置" class="ml-button-4" id="btn_modify"/>
+                         </td>
+                     </tr>
+                 </table>
+            </td> 
+        </tr>
+        <hr />
+        <tr><td nowrap> <br><center><font color=#123344 size=2>&nbsp;&nbsp;CopyRight 2017-2018 Fanxiushu </font></center></td></tr></table>
+
+    <script type="text/javascript" src="/param_config.js"></script>
+    <script type="text/javascript">
+         function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        document.body.className = ('ontouchstart' in window) ? 'mobile' : 'desktop';
+        
+        var proto = "ws://";
+        if (document.location.protocol == 'https:') {
+            proto="wss://"
+        }
+        var url = proto + window.location.host + '/wsock_stream?id=' + getQueryString("id");
+        var param = new param_config(url, function (msg) {
+            for (k in msg) {
+                if (k == 'param') {
+                  //  console.log('Param -' + msg[k]);
+                    paramChange(msg[k]);
+                }
+            }
+        }, false);
+        ///
+
+        setTitleName(); //
+     //   sel_imagetype_change(4); ///
+        
+        function setTitleName(){
+            var tmp=getQueryString("desc"); 
+            if(tmp) {//alert(document.getElementById('title_name').InnerHTML);
+                document.getElementById('titleName').innerHTML = '<center><b>' + tmp + ' 设置图像编码 </b></center>';
+                document.title= tmp+' 设置图像编码';
+            }
+        }
+
+        function sel_imagetype_change(value)
+        {
+             var tr1 = document.getElementById('tr_h264');
+             var tr3 = document.getElementById('tr_val');
+             if(value==4 || value==5 ){ //H264 , H265
+                  tr1.style.display='';
+                  var tr2 = document.getElementById('tr_264lib');
+                  if(value==4) tr2.style.display=''; else tr2.style.display='none';
+             }
+             else{
+                  tr1.style.display='none';
+             }
+             if(value<4 || value==11){tr3.style.display='none';}
+             else{tr3.style.display='';}
+             ///
+             var tr4 = document.getElementById('tr_lowpic');
+             if(value==11) tr4.style.display='';else tr4.style.display='none';
+             ////
+             var tr5 = document.getElementById('tr_jpeg');
+             if(value>=2&& value<=3) tr5.style.display='';else tr5.style.display='none';
+        }
+        function sel_h264lib_change(value)
+        {
+            var tr3 = document.getElementById('tr_present');
+            if(value==1 || value==3)  {tr3.style.display=''; } else tr3.style.display='none';
+        }
+        function sel_selected_value(id, value)
+        {
+            var obj = document.getElementById(id);
+            for (var i = 0; i < obj.options.length; ++i) {
+                if (obj.options[i].value == value) {
+                    obj.options[i].selected = true;
+                    break;
+                }
+            }
+        }
+        function sel_get_selected_value(id)
+        {
+            var obj = document.getElementById(id);
+            return obj.options[obj.selectedIndex].value;
+        }
+        function paramChange(sp)
+        {
+            var warn_color = "#DDDDDD";
+            var img_warn_str = null;
+            var audio_warn_str = null;
+            ///
+            for (k in sp) {
+                if (k == "image") { ///
+                    var img=sp[k];
+                    var image_type = img["image_type"];
+                    var all_type = img["all_type"];
+                    var priority = img["priority"];
+                    var jpeg_quailty = img["jpeg_quailty"];
+                    var select_encoder = img["select_encoder"];
+                    var lowpic_type = img["lowpic_type"];
+                    var preset = img["preset"];
+                    var rf_constant = img["rf_constant"];
+                    var keyint_max = img["keyint_max"];
+                    var bit_rate = img["bit_rate"];
+
+                    //
+                    var strAllType = "";
+                    switch (all_type) {
+                        case 0: strAllType = "未压缩"; break;
+                        case 1: strAllType = "LZO压缩"; break;
+                        case 2: strAllType = "ZLIB压缩"; break;
+                        case 3: strAllType = "LZMA压缩"; break;
+                        default: strAllType = "Unknown";
+                    }
+
+                    if (all_type != 0) {
+                        img_warn_str = "当前图像外部整帧采用" + strAllType + "编码，只支持原生客户端";
+                        warn_color = "#FF0909";
+                    }
+                    else {
+                        if (image_type == 4) { img_warn_str = "当前图像编码支持网页客户端控制，支持推流，支持原生客户端"; warn_color = "#0ECCEE";}
+                        else if (image_type == 8 || image_type == 9) { img_warn_str = "当前图像编码支持网页客户端控制，支持原生客户端, 不支持推流"; warn_color = "#700C0B";}
+                        else { img_warn_str = "当前图像编码只支持原生客户端"; warn_color = "#FF4909"; }
+                    }
+                    ////
+                 //   console.log('imgtype=' + image_type);
+                    var strImgType = "";
+                    switch (image_type) {
+                        case 0: strImgType = "No Compress"; break;
+                        case 1: strImgType = "YUV420P"; break;
+                        case 2: strImgType = "JPEG"; break;
+                        case 3: strImgType = "YUV+JPEG"; break;
+                        case 4: strImgType = "H264";
+                            switch (select_encoder) {
+                                case 1: strImgType += " (x264)"; break;
+                                case 2: strImgType += " (openh264)"; break;
+                                case 3: strImgType += " (Intel_QSV)"; break;
+                                case 4: strImgType += " (Nvidia Encoder)"; break;
+                            }
+                            break;
+                        case 5: strImgType = "H265"; break;
+                        case 6: strImgType = "MPEG4"; break;
+                        case 7: strImgType = "MPEG2"; break;
+                        case 8: strImgType = "MPEG1"; break;
+                        case 9: strImgType = "VP8"; break;
+                        case 10: strImgType = "VP9"; break;
+                        case 11: strImgType = "LowPic"; break;
+                        default: strImgType = "Unknown";
+                    }
+
+                    sel_selected_value('sel_imagetype', image_type);
+                    sel_imagetype_change(image_type);
+                    sel_selected_value('sel_frametype', all_type);
+
+                    document.getElementById('image_display').innerHTML = strImgType + ";&nbsp;&nbsp;&nbsp;整帧" + strAllType + ";&nbsp;&nbsp;&nbsp;";
+                    if (image_type >= 4 && image_type <= 10) { // H264-VP9
+                        var thread_count = (priority >> 2) & 0x3F; ///
+                        priority = priority & 0x03; ///
+                        if (priority == 1) {
+                            document.getElementById('image_display').innerHTML += "图像质量优先;&nbsp;&nbsp;&nbsp;";
+                        }
+                        else {
+                            document.getElementById('image_display').innerHTML += "网络带宽优先;&nbsp;&nbsp;&nbsp;";
+                        }
+                        ///
+                        sel_selected_value('sel_priority', priority);
+
+                        /////
+                        if ((image_type == 4 && (select_encoder == 1|| select_encoder ==3 )) || image_type == 5) {// x264 or x265
+                            var strP = "";
+                            switch (preset) {
+                                case 0: strP = "ultrafast"; break;
+                                case 1: strP = "superfast"; break;
+                                case 2: strP = "veryfast"; break;
+                                case 3: strP = "faster"; break;
+                                case 4: strP = "fast"; break;
+                                case 5: strP = "medium"; break;
+                                case 6: strP = "slow"; break;
+                                case 7: strp = "slower"; break;
+                                case 8: strP = "veryslow"; break;
+                                case 9: strP = "placeto"; break;
+                                default: strP = "unknown";
+                            }
+                            
+                            ///
+                            document.getElementById('image_display').innerHTML += strP+"&nbsp;&nbsp;&nbsp;";
+                        }
+                        if (image_type == 4 || image_type == 5) {
+                            sel_selected_value('sel_present', preset);
+                            if (image_type == 4) {
+                                sel_selected_value('sel_h264lib', select_encoder);
+                                sel_h264lib_change(select_encoder);
+                            }
+                            ////
+                        }
+                        ///
+                        document.getElementById('txt_crf').value = rf_constant;
+                        document.getElementById('txt_keymax').value = keyint_max;
+                        document.getElementById('txt_bitrate').value = (bit_rate / 1024).toFixed(0);
+                        document.getElementById('txt_thread').value = thread_count;
+
+                        /////
+                        var extr = "图像质量参数&nbsp;" + rf_constant + ";&nbsp;&nbsp;&nbsp;关键帧间隔&nbsp;" + keyint_max +
+                            ";&nbsp;&nbsp;&nbsp;比特率:&nbsp;" + (bit_rate / 1024).toFixed(0) + "&nbsp;Kbps;&nbsp;"+
+                            "&nbsp;编码线程数&nbsp;" + thread_count +"&nbsp;";
+                        document.getElementById('image_extra').innerHTML = extr;
+                            
+                    }
+                    else {
+                        if (image_type == 2 || image_type == 3) {
+                            document.getElementById('image_extra').innerHTML = "JPEG图像压缩百分比: " + jpeg_quailty + "&nbsp;&nbsp;";;
+                            ///
+                            document.getElementById('txt_jpeg').value = jpeg_quailty;
+                            ///
+                        }
+                        else if (image_type == 11) {
+                            var s = "";
+                            switch (lowpic_type) {
+                                case 1: s = "灰度图"; break;
+                                case 2: s = "256色图"; break;
+                                case 3: s = "16色图"; break;
+                                case 4: s = "8色图"; break;
+                                case 5: s = "4色图"; break;
+                                case 6: s = "单色图"; break;
+                            }
+                            document.getElementById('image_extra').innerHTML = "特殊图像类型:&nbsp;&nbsp;" + s + "&nbsp;&nbsp;";;
+                            ////
+                            sel_selected_value('sel_lowpic', lowpic_type);
+                            /////
+                        }
+                        else document.getElementById('image_extra').innerHTML = "";
+
+                    }
+                }
+                ////
+                if (k == "audio") {
+                    var a = sp[k];
+                    var slot_index = a["index"];
+                    var compress = a["compress"];
+                    var volume = a["volume"];
+
+                    if (compress != null) {
+                        var type = compress["type"];
+                        var bit_rate = compress["bit_rate"];
+                        var strType = "";
+                        switch (type) {
+                            case 1: strType = "AAC-LC"; break;
+                            case 2: strType = "AC3"; break;
+                            case 3: strType = "FLAC"; break;
+                            case 4: strType = "MP2"; break;
+                            default: strType = "Unknown";
+                        }
+                        document.getElementById('audio_display').innerHTML =
+                            "音频编码方式&nbsp;" + strType + ";&nbsp;&nbsp;&nbsp;编码比特率：&nbsp;" + (bit_rate / 1000).toFixed(0) + "&nbsp;Kbps&nbsp;&nbsp;";
+                        ////
+                        sel_selected_value('sel_audiotype', type);
+                        document.getElementById('txt_audiobitrate').value = (bit_rate / 1000).toFixed(0);
+                        //////
+                        if (type == 1) { audio_warn_str = "当前音频编码支持网页客户端，支持推流，支持原生客户端"; warn_color = "#0ECCEE"; }
+                        else if (type == 4) { audio_warn_str = "当前音频编码支持网页客户端，支持原生客户端"; warn_color = "#700C0B"; }
+                        else { audio_warn_str = "当前音频编码只支持原生客户端"; warn_color = "#FF4909"; }
+
+                    }
+                    /////
+                    if (volume != null) {
+                        var enable = volume["enable"];
+                        var state = volume["state"];
+                        var value = volume["value"];
+                        var type = volume["type"];
+                        console.log('enable=' + enable + ',state=' + state + ',type='+type+', vol=' + value + ', index=' + slot_index);
+                        if (slot_index >= 1 && slot_index <= 4) {
+                            document.getElementById('audio_check' + slot_index).checked = enable ? true : false;
+                            document.getElementById('audio_vol' + slot_index).value = (value / 100).toFixed(1);
+                            if (slot_index == 1) {
+                                if (type == 2) document.getElementById('audio_text1').innerHTML = "&nbsp;&nbsp;<font size=\"2\" color=\"#334455\">主麦克风&nbsp;&nbsp;</font>";
+                                else document.getElementById('audio_text1').innerHTML="&nbsp;&nbsp;<font size=\"2\" color=\"#334455\">电脑内部声音&nbsp;&nbsp;</font>";
+                            }
+                            /////
+                            var str_state = "<font color=#304080>Closed</font>"; if (state == 1) str_state = "<font color=#a02cf0>Opened</font>"; else if (state == 2) str_state = "<font color=#Ff0011>Error</font>";
+                            document.getElementById('audio_state' + slot_index).innerHTML = "State:&nbsp;" + str_state +"&nbsp;";
+                        }
+                    }
+
+                    /////
+                }
+                ///
+                if (k == "scale") {
+                    var scale=sp[k];
+                    var screen_width = scale["screen_width"];
+                    var screen_height = scale["screen_height"];
+                    var org_width = scale["org_width"];
+                    var org_height = scale["org_height"];
+                    var org_grab_msec = scale["org_grab_msec"];
+                    org_cursor_state = scale["org_cursor_state"];
+                    if (screen_width <= 0 && screen_height <= 0) {
+                        screen_width = org_width;
+                        screen_height = org_height;
+                    }
+                    ///
+                    document.getElementById('scale_display').innerHTML =
+                        "输出图像宽高：&nbsp;" + screen_width +"X"+screen_height+";&nbsp;&nbsp;&nbsp;"+
+                        "原始图像宽高:&nbsp;" + org_width + "X" + org_height + ";&nbsp;&nbsp;&nbsp;" +
+                        "图像采集间隔："+org_grab_msec + "&nbsp;毫秒&nbsp;&nbsp;&nbsp;";
+                    ////
+                    document.getElementById('txt_scale_width').value = screen_width;
+                    document.getElementById('txt_scale_height').value = screen_height;
+                    document.getElementById('txt_grab_msec').value = org_grab_msec;
+                    sel_selected_value('sel_cursor_state', org_cursor_state);
+                    /////
+                }
+                //////
+            }
+            /////
+            var obj = document.getElementById('warn_display');
+            if (img_warn_str) obj.innerHTML = "&nbsp;&nbsp;&nbsp;注1：<font color=" + warn_color + " size=4>" + img_warn_str + "</font>";
+            if (audio_warn_str) document.getElementById('warn_audio').innerHTML =
+                "&nbsp;&nbsp;&nbsp;注2：<font color=" + warn_color + " size=4>" + audio_warn_str + "</font>";
+            /////////
+            document.getElementById('btn_modify').value = "修改配置";
+        }
+        function paramModify()
+        {
+            document.getElementById('btn_modify').value = "等待结果";
+            ///
+            var image_type = sel_get_selected_value('sel_imagetype'); //alert(image_type);
+            var all_type = sel_get_selected_value('sel_frametype');
+            var priority = sel_get_selected_value('sel_priority');
+            var present = sel_get_selected_value('sel_present');
+            var select_encoder = sel_get_selected_value('sel_h264lib');
+            var lowpic_type = sel_get_selected_value('sel_lowpic');
+            var cursor_state = sel_get_selected_value('sel_cursor_state');
+
+            var hdr = new Uint8Array(18);
+            var i;
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            ///
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 1; // image type
+            hdr[3] = 1; // SET Param
+            hdr[4] = all_type; /// all_
+            hdr[5] = image_type; ////
+            if (image_type >= 2 && image_type <= 3) { // JPEG or YUV+JPEG
+                hdr[6] = parseInt(document.getElementById('txt_jpeg').value);
+                ////
+            }
+            else if (image_type == 11) {// LOWPIC
+                hdr[6] = lowpic_type;
+                hdr[7] = parseInt(document.getElementById('txt_jpeg').value); ///
+                ///
+            }
+            else if (image_type >= 4 && image_type <= 10) {
+                if (image_type == 4) hdr[6] = select_encoder; // x264 or openh264
+                else hdr[6] = 0; ////
+                if (image_type == 4 || image_type == 5) { /// h264 or h265, preset
+                    hdr[7] = present;
+                }
+                else hdr[7] = 255;
+                ///
+                hdr[8] = parseInt(document.getElementById('txt_crf').value); ////crf
+                var keymax = parseInt(document.getElementById('txt_keymax').value);
+                var bitrate = parseInt(document.getElementById('txt_bitrate').value) * 1024;
+                var thread_count = parseInt(document.getElementById('txt_thread').value);
+
+                param.htons(hdr, 9, keymax);
+                param.htonl(hdr, 11, bitrate);
+                hdr[15] = (priority & 0x03) | ((thread_count <<2) &0xFC); // bit0-bit1;  bit2-bit7
+                ////
+
+            }
+
+            param.send_header(hdr);
+            ////
+
+            /// audio compress
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 2; // audio type
+            hdr[3] = 1; // SET Param
+            hdr[4] = 2; /// compress type
+            hdr[5] = 0; // slot index
+            var compresstype = sel_get_selected_value('sel_audiotype');
+            hdr[6] = compresstype;
+            param.htonl(hdr, 7, parseInt(document.getElementById('txt_audiobitrate').value) * 1000);
+
+            param.send_header(hdr);
+
+            //audio volume
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 2; // audio type
+            hdr[3] = 1; // SET Param
+            hdr[4] = 1; /// volume type
+            for (i = 1; i <= 4; ++i) { ///
+                hdr[5] = i; // slot index
+                hdr[6] = document.getElementById('audio_check' + i).checked ? 1 : 0;
+                var vol = parseInt(document.getElementById('audio_vol' + i).value * 100);
+                param.htonl(hdr, 7, vol);
+                ///
+                param.send_header(hdr);
+            }
+
+            ///scale
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 3; // scale type
+            hdr[3] = 1; // SET Param
+            param.htons(hdr, 4, parseInt(document.getElementById('txt_scale_width').value));
+            param.htons(hdr, 6, parseInt(document.getElementById('txt_scale_height').value));
+
+            param.send_header(hdr);
+
+            /// control
+            for (i = 0; i < 18; ++i) hdr[i] = 0;
+            hdr[0] = 6; // CMD_PARAM
+            hdr[1] = 0;
+            hdr[2] = 5; // control type
+            hdr[3] = 1; // SET Param
+            hdr[4] = 4; // set grab msec
+            hdr[5] = 0; // submethod
+            param.htons(hdr, 6, parseInt(document.getElementById('txt_grab_msec').value));
+            
+            param.send_header(hdr);
+            
+            if (org_cursor_state != cursor_state) {
+                hdr[4] = 2; // hide or show cursor
+                param.send_header(hdr); ///
+            }
+            /////
+            param.query_param();
+
+        }
+        function back_home() {
+            var back = getQueryString("back"); 
+            var url;
+            var desc = getQueryString("desc"); if (desc == null) desc = "";
+            if (back == null) {
+                url = "/htmlvideo?id=" + getQueryString("id") + "&desc=" + escape(desc);
+            }
+            else {
+                url = back + "?id=" + getQueryString("id") + "&desc=" + escape(desc);
+            }
+            window.location.href = url;
+        }
+    </script>
+</body> 
+</html>

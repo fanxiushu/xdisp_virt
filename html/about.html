@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <!-- by fanxiushu 2018-08-20 -->
+<head>
+   <META http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>关于本软件</title>
+</head>
+    
+<body style="background-color:#919090">
+    <table align="center" border="0" style="background-color:#FEFEFE;height:100%;width:90%;">
+        <tr>
+            <td nowrap><br />
+                <table bgcolor="#AABBCC" width="400" height="40" align="center"><tr><td nowrap ><center> <b> 关于本软件 </b></center></td></tr></table>
+                <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td nowrap>
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                    <tr bgcolor="#DDECED"><td nowrap>
+                这是基于windows平台的远程桌面控制程序。<br />
+                不单提供远程控制，还支持摄像头，多路音频，推流，以及能在远程桌面顺畅的观看视频，玩游戏等多媒体娱乐功能。<br />
+                并且提供中转服务器程序解决访问内网的远程桌面问题。<br />
+                被控制端支持Windows系列（包括WINXP, WIN7, WIN8, WIN10)。<br />
+                控制端支持原生客户端，也支持网页客户端。<br />
+                网页客户端支持的浏览器包括Chrome，FireFox，Apple Safari，Microsoft Edge，Opera等具备现代功能的浏览器，<br />
+                不支持IE以及IE内核浏览器。网页客户端不限平台，几乎所有操作系统平台都支持（包括移动平台和PC平台）。<br />
+                网络传输既支持不加密的明文传输；也支持SSL加密传输，为数据传输带来安全保证。<br />
+                <br />
+                软件不链接到某个固定服务器，也不提供自动更新功能。如有需求，请给本人发邮件<br />
+                <a href="mailto:fanxiushu@163.com">fanxiushu@163.com</a> <br />
+                或者访问相关BLOG:<br />
+                CSDN: <a href="https://blog.csdn.net/fanxiushu">https://blog.csdn.net/fanxiushu</a> <br />
+                GITHUB: <a href="https://github.com/fanxiushu">https://github.com/fanxiushu</a> <br />
+                <br />
+                本软件不属于任何公司和组织，版权归Fanxiushu所有。
+                <font color="#EE2900">未经过开发作者许可，不得用于商业用途。</font><br /><br />
+               <div align="center">Fanxiushu 2017-2018 <br /></div>
+                </td></tr></table></td>
+            </tr>
+        <tr>
+            <td nowrap>
+                <br />
+                程序以及原理说明：<br/>
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center">
+                    <tr bgcolor="#E2EeE1"><td nowrap>
+                此软件包括两个程序（以及两个配置文件），xdisp_virt.exe和xdisp_server.exe。<br />
+                xdisp_virt实现核心的远程桌面功能，原生或网页客户端可以直接连接到此程序，此程序也可以连接到xdisp_server中转服务端。<br />
+                xdisp_server实现网络中转服务，把xdisp_server运行到公网服务器上，处于内网的xdisp_virt连接到公网的xdisp_server，<br />
+                原生或网页客户端连接到xdisp_server就可以获取到所有xdisp_virt列表，从而可以选择一个建立远程控制。<br />
+                <br />
+                软件通过GDI，DXGI或者Mirror驱动技术从windows采集桌面图像数据，通过WASAPI技术采集电脑内部声音，然后使用各种编码算法，<br />
+                把声音和图像编码压缩，定义成私有传输协议，通过网络传输到原生或者网页客户端。<br />
+                网页客户端利用WebSocket网络传输获取到编码的图像和声音，再通过javascript解码，再在页面上画出来，声音通过网页播放出来。<br />
+                具体原理的阐述可以查阅CSDN上的Windows实现远程桌面的文章系列。<br />
+                    </td></tr></table>
+            </td>
+        </tr>
+        <tr>
+            <td nowrap><br />
+                使用到的开源库如下：<br />
+                 <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center"><tr bgcolor="#E6EeE1"><td nowrap>
+                1，x264和openh264用于图像H264编码。mfx_dispatch和ffmpeg用于H264的Intel显卡的QSV硬编码和Nvidia显卡硬编码。<br />
+                2，ffmpeg用于MPEG4，MPEG2，MPEG1编码，以及一些图像和音频转换，rtsp，rtmp推流，以及AAC，FLAC，AC3，MP2等音频编码等。<br />
+                3，libvpx用于VP8和VP9编码和解码。<br />
+                4，libjpeg-turbo用于JPEG图像编码和解码，以及RGB和YUV格式转换。<br />
+                5，libyuv用于图像快速缩放。<br />
+                6，fdk-aac和ffmpeg用于AAC编码，jbig2用于二值图像编码解码。<br />
+                7，x265用于H265编码。<br />
+                8，zlib,liblzma,lzo用于无损压缩。<br />
+                9，openssl用于网络SSL加密传输。<br />
+                10，unqlite对象数据库用于保存配置参数。<br />
+                11，jsmpeg和h264bsd，以及一些其他相关js开源库用于网页客户端javascript解码图像和音频。<br />
+            </td></tr></table></td>
+        </tr>
+        <tr>
+            <td nowrap><br />
+                软件使用说明：<br />
+                 <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center"><tr bgcolor="#EEE6E6"><td nowrap>
+                个人以及家庭免费使用本软件，使用时候远程控制的图像上会出现一个水印。<br />
+                未经许可，不得使用本软件从事商业活动。<br />
+                不得使用本软件从事非法犯罪活动，否则后果自负。<br />
+            </td></tr></table></td>
+        </tr>
+        <tr>
+            <td nowrap><br />
+                其他：<br />
+                <table  width="90%" border=0 cellSpacing=0 cellPadding=0 align="center"><tr bgcolor="#E4E4E9"><td nowrap>
+                内容繁多，时间仓促，BUG难免，如果遇到问题，希望能指出。<br />
+                xFsRedir是目录重定向程序，能把所有其他电脑的所有目录集中到一起。<br />
+                下载地址：<br />
+                CSDN: <a href="http://download.csdn.net/download/fanxiushu/10416862">http://download.csdn.net/download/fanxiushu/10416862</a><br />
+                GITHUB: <a href="https://github.com/fanxiushu/xFsRedir">https://github.com/fanxiushu/xFsRedir</a><br />
+                xFsRedir配合xidsp_virt一起，可以随心所欲的控制家里或公司里的多台电脑及其文件资源。<br />
+            </td></tr></table></td>
+        </tr>
+        <tr><td nowrap><br><center><font color=#223377 size=2>&nbsp;&nbsp;CopyRight 2017-2018 Fanxiushu </font></center></td></tr>
+    </table>
+</body>
+</html>
+

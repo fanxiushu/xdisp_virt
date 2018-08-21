@@ -1,0 +1,111 @@
+.ml-button-4 {
+            background-color: #3D6D9D;
+            border: 1px solid #000000;
+            -moz-box-shadow: inset 0px 0px 1px rgba(0,0,0,1);
+            -webkit-box-shadow: inset 0px 0px 1px rgba(0,0,0,1);
+            box-shadow: inset 0px 0px 1px rgba(0,0,0,1);
+            background-image: -o-linear-gradient(90deg, rgb(53,53,53) 0, rgb(67,67,67) 100);
+            background-image: -moz-linear-gradient(90deg, rgb(53,53,53) 0, rgb(67,67,67) 100);
+            background-image: -webkit-linear-gradient(90deg, rgb(53,53,53) 0, rgb(67,67,67) 100);
+            background-image: -ms-linear-gradient(90deg, rgb(53,53,53) 0, rgb(67,67,67) 100);
+            background-image: linear-gradient(90deg, rgb(53,53,53) 0, rgb(67,67,67) 100);
+            color: #FDFFFD;
+            text-shadow: rgba(0,0,0,1) 0px 1px 0px;
+        }
+
+            .ml-button-4:hover {
+                background-color: #4C4C4C;
+                background-image: -o-linear-gradient(90deg, rgb(63,63,63) 0, rgb(79,79,79) 100);
+                background-image: -moz-linear-gradient(90deg, rgb(63,63,63) 0, rgb(79,79,79) 100);
+                background-image: -webkit-linear-gradient(90deg, rgb(63,63,63) 0, rgb(79,79,79) 100);
+                background-image: -ms-linear-gradient(90deg, rgb(63,63,63) 0, rgb(79,79,79) 100);
+                background-image: linear-gradient(90deg, rgb(63,63,63) 0, rgb(79,79,79) 100);
+            }
+
+            .ml-button-4:active {
+                background-color: #272727;
+                -moz-box-shadow: inset 0px 0px 5px rgba(0,0,0,1);
+                -webkit-box-shadow: inset 0px 0px 5px rgba(0,0,0,1);
+                box-shadow: inset 0px 0px 5px rgba(0,0,0,1);
+                background-image: -o-linear-gradient(90deg, rgb(67,67,67) 0, rgb(53,53,53) 100);
+                background-image: -moz-linear-gradient(90deg, rgb(67,67,67) 0, rgb(53,53,53) 100);
+                background-image: -webkit-linear-gradient(90deg, rgb(67,67,67) 0, rgb(53,53,53) 100);
+                background-image: -ms-linear-gradient(90deg, rgb(67,67,67) 0, rgb(53,53,53) 100);
+                background-image: linear-gradient(90deg, rgb(67,67,67) 0, rgb(53,53,53) 100);
+                text-shadow: none;
+            }
+        
+select {
+          /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+          border: solid 1px #000;
+ 
+          /*很关键：将默认的select选择框样式清除*/
+           appearance:none;
+          -moz-appearance:none;
+          -webkit-appearance:none;
+ 
+          /*在选择框的最右侧中间显示小箭头图片*/
+          background: url("/arrow.png") no-repeat scroll right center transparent;
+ 
+ 
+          /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+          padding-right: 14px;
+		  font-size:15px;
+      }
+ 
+       /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+       select::-ms-expand { display: none; }
+
+    a{text-decoration:none;}
+
+	input{
+	   font-size:15px;
+	}
+
+#menu {
+	text-shadow: rgba(0,0,0,1) 0px 1px 0px;
+	font-size:15px;
+	overflow: hidden;
+	display:inline-block;
+}
+
+#menu, #menu ul {
+	list-style-type: none;
+	background: #6D6D8D;
+	margin: 0;
+	padding: 0;
+}
+
+#menu li {
+	float: left;
+	
+}
+
+#menu li a {
+	display: block;
+	padding: 1px 10px;
+	color: #FFF;
+	text-decoration: none;
+	border-right: 0px solid #FFF;
+}
+#menu li a:hover {
+	background: #1BA6B2;
+}
+
+#menu li ul li {
+	float: none;
+	background: #516161;
+}
+
+#menu li ul li a {
+	border-top: 0px solid #FFF;
+}
+
+#menu li ul {
+	display: none;
+	position: absolute;
+}
+
+#menu li:hover ul {
+	display: block;
+}

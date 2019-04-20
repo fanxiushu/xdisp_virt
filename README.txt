@@ -40,6 +40,9 @@ https://blog.csdn.net/fanxiushu/article/details/78869719
 	这里的html目录分享了网页客户端的全部源代码。
 	除此之外，其他源代码并不开源，以此带来不便敬请谅解。
 
+2019-04 新增功能：
+     1，  支持多显示器远程控制，可以把多个显示合并到一起或者单独显示。
+     2，  在WIN7，WIN10等平台，增加 DirectX HOOK 方式截取全屏独占程序。
 
 Bug fixed:
     1, 修正网页客户端在最新chrome或firefox中，远程显示窗口不能根据浏览器窗口自动适配问题，

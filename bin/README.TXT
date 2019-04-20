@@ -18,6 +18,7 @@
      在xdisp_virt.ini配置文件中，添加
      fulld3d_supported=aero, true_full, uwp 
      即可支持DirectX Hook截取独占全屏，dx_hook32.dll和  dx_hook64.dll会被注入所有界面程序中。
+     dll动态库是依靠系统自带的 rundll32.exe 来运行。
      目前测试的程序包括WIN7中的Windows Media Center，
      极品飞车17，极品飞车18, 极品飞车6（热力追踪2）， CS1.6， CrossFire，鬼泣2，古墓丽影8，
      生化危机5，正当防卫2，暗黑地牢，魔兽争霸3之冰封王座，英雄联盟

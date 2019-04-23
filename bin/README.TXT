@@ -1,9 +1,9 @@
 使用方法：
 把 xdisp_virt.exe， xdisp_virt.ini， dx_hook32.dll, dx_hook64.dll复制到本地电脑某个目录下，
 直接运行 xdisp_virt.exe 按照提示使用即可。默认端口是11000，
-可以用浏览器在本地打开http://localhost:11000即可进行各种配置， 
+可以用浏览器在本地打开 http://localhost:11000 即可进行各种配置， 
 假设运行xdisp_virt的机器是192.168.1.1
-在别的机器或者手机浏览器上打开 http://192.168.1.1:11000即可远程控制。
+在别的机器或者手机浏览器上打开 http://192.168.1.1:11000 即可远程控制。
 
 把xdisp_server.exe和xdisp_server.ini复制到公网服务器上运行，
 然后所有xdisp_virt设置连接到运行xdisp_server的服务器，即可跨域局域网远程控制。

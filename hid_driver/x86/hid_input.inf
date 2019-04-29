@@ -1,0 +1,66 @@
+;
+; Fanxiushu 2019-04-24 for xdisp_virt Keyboard & mouse Remote Control 
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+;Class=System
+;ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Prov%
+LayoutFile=layout.inf
+CatalogFile=hid_input.cat
+DriverVer=04/24/2019,1.0.0.1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; copy files
+[SourceDisksFiles]
+hid_input.sys = 99,,
+
+[SourceDisksNames]
+99 = %DiskName%,,,""
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Install
+[Manufacturer]
+%Prov%=Vendor, NTx86, NTamd64
+
+[Vendor.NTx86]
+%DevDesc%=HidInst, %HardwareId%
+
+[Vendor.NTamd64]
+%DevDesc%=HidInst, %HardwareId%
+
+;[ControlFlags]
+;ExcludeFromSelect=%HardwareId%
+
+[HidInst.NT]
+CopyFiles=sysCopyFiles
+
+[sysCopyFiles]
+hid_input.sys
+
+[HidInst.NT.HW]
+;
+
+[HidInst.NT.Services]
+AddService = hid_input,0x00000002,hidinput_Service_Inst,
+
+[hidinput_Service_Inst]
+DisplayName    = %DevSvc%
+ServiceType    = 1 ; %SERVICE_KERNEL_DRIVER% 
+StartType      = 3 ; %SERVICE_DEMAND_START% 
+ErrorControl   = 0 ; %SERVICE_ERROR_IGNORE% 
+ServiceBinary  = %12%\hid_input.sys 
+
+
+[Strings]
+Prov= "Fanxiushu"
+DiskName = "Fanxiushu HID Input Installation Disk"
+DevDesc =  "Fanxiushu Virtual HID Input Device"
+DevSvc =   "Fanxiushu Virtual HID Input Service"
+HardwareId = "HID\FanxiushuVirtualHidDevice"
+

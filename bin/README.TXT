@@ -1,4 +1,4 @@
-目录包含：
+﻿目录包含：
    xdisp_virt.exe程序，xdisp_virt.ini是它的配置文件，
    xdisp_server.exe程序，xdisp_server.ini是它的配置文件。
    dx_hook32.dll, dxhook64.dll是自动注入进每个界面进程挂钩DirectX和OpenGL绘图的动态库。
@@ -15,8 +15,11 @@
    假设运行xdisp_virt的机器是192.168.1.1
    在别的机器或者手机或平板浏览器上打开 http://192.168.1.1:11000 即可远程控制。
 
-   把xdisp_server.exe和xdisp_server.ini复制到公网服务器上运行，
-   然后所有xdisp_virt设置连接到运行xdisp_server的服务器，即可跨越域局域网远程控制。
+   把xdisp_server.exe和xdisp_server.ini复制到公网服务器上运行，默认端口32000，
+   然后所有xdisp_virt设置连接到运行xdisp_server的服务器，
+   假设xdisp_server的机器的公网IP是13.14.15.16
+   则在其他PC，手机，平板等浏览器上打开 http://13.14.15.16:32000 就能看到所有连上来的xdisp_virt列表，
+   从而可跨越域局域网远程控制。
 
    如果有必要，可以安装driver目录下的镜像驱动和hid_driver目录下的虚拟鼠标键盘驱动。
 

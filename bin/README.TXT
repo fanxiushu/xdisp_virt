@@ -8,7 +8,7 @@
    对于维护人员来说有一定好处
 
 使用方法：
-   把 xdisp_virt.exe， xdisp_virt.ini， dx_hook32.dll, dx_hook64.dll复制到本地电脑某个目录下，
+   把 xdisp_virt.exe， xdisp_virt.ini 复制到本地电脑某个目录下，
    直接运行 xdisp_virt.exe 按照提示使用即可。默认端口是11000，
    可以用浏览器在本地打开 http://localhost:11000 即可进行各种配置， 
    假设运行xdisp_virt的机器是192.168.1.1
@@ -23,6 +23,9 @@
 
    如果有必要，可以安装driver目录下的镜像驱动和hid_driver目录下的虚拟鼠标键盘驱动。
 
+2019-5月更新：
+1，新增加了对 主程序 xdisp_virt.exe的xdisp_virt.ini 配置文件，可以通过网页方式进行配置，不用再像以前一样非得打开xdisp_virt.ini文件来做配置。
+2，把 DirectX HOOK 动态库打包进 xdisp_virt.exe 程序中，在配置 启动DXHOOK的情况下，会自动从程序释放出 dx_hook32.dll和dx_hook64.dll动态库。
 
 2019-4月新增功能：
 

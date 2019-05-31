@@ -26,8 +26,11 @@ htmlÄ¿Â¼°üº¬ËùÓÐÍøÒ³ÒÔ¼°javascript½Å±¾£¬htmlÄ¿Â¼ÒÑ¾­±»´ò°ü½ø xdisp_virt.exe³ÌÐò¡
 imageÄ¿Â¼ÊÇ³ÌÐòÔËÐÐµÄÒ»Ð©Ð§¹ûÍ¼¡£
 
 2019-5ÔÂ¸üÐÂ£º
-1£¬ÐÂÔö¼ÓÁË¶Ô Ö÷³ÌÐò xdisp_virt.exeµÄxdisp_virt.ini ÅäÖÃÎÄ¼þ£¬¿ÉÒÔÍ¨¹ýÍøÒ³·½Ê½½øÐÐÅäÖÃ£¬²»ÓÃÔÙÏñÒÔÇ°Ò»Ñù·ÇµÃ´ò¿ªxdisp_virt.iniÎÄ¼þÀ´×öÅäÖÃ¡£
-2£¬°Ñ DirectX HOOK ¶¯Ì¬¿â´ò°ü½ø xdisp_virt.exe ³ÌÐòÖÐ£¬ÔÚÅäÖÃ Æô¶¯DXHOOKµÄÇé¿öÏÂ£¬»á×Ô¶¯´Ó³ÌÐòÊÍ·Å³ö dx_hook32.dllºÍdx_hook64.dll¶¯Ì¬¿â¡£
+    1£¬ÐÂÔö¼ÓÁË¶Ô Ö÷³ÌÐò xdisp_virt.exeµÄxdisp_virt.ini ÅäÖÃÎÄ¼þ£¬¿ÉÒÔÍ¨¹ýÍøÒ³·½Ê½½øÐÐÅäÖÃ£¬²»ÓÃÔÙÏñÒÔÇ°Ò»Ñù·ÇµÃ´ò¿ªxdisp_virt.iniÎÄ¼þÀ´×öÅäÖÃ¡£
+    2£¬°Ñ DirectX HOOK ¶¯Ì¬¿â´ò°ü½ø xdisp_virt.exe ³ÌÐòÖÐ£¬ÔÚÅäÖÃ Æô¶¯DXHOOKµÄÇé¿öÏÂ£¬»á×Ô¶¯´Ó³ÌÐòÊÍ·Å³ö dx_hook32.dllºÍdx_hook64.dll¶¯Ì¬¿â¡£
+    3,  ½øÒ»²½ÓÅ»¯²É¼¯Ê±¼ä¼ä¸ô£¬Ê¹ÓÃNtSetTimerResolution °ÑÏµÍ³Ê±¼ä¾«¶ÈÉèÖÃ×î´ó£¬´Ó¶øÈ·±£Sleep¾«È·Ë¯Ãß£¬
+     ±£Ö¤Í¼Ïñ²É¼¯¼ä¸ô¾¡Á¿¾«È·¡£ÓÈÆäÕë¶ÔÕâ¶Ô 60 FPSÕâÑùµÄ¸ß²É¼¯ÂÊ¡£
+     ²»¹ýÍøÒ³¿Í»§¶Ë±¾ÉíµÄ×ÊÔ´ÏûºÄÍ¦´ó£¬¿ÉÄÜÎÞ·¨³ÐÊÜ¸ß²É¼¯ÂÊ£¬ÐèÊ¹ÓÃÐÔÄÜÁ¼ºÃµÄÍøÒ³¿Í»§¶Ë»òÕßÊ¹ÓÃÔ­Éú¿Í»§¶Ë¡£
 
 2019-04 ÐÂÔö¹¦ÄÜ£º
      1£¬  Ö§³Ö¶àÏÔÊ¾Æ÷Ô¶³Ì¿ØÖÆ£¬¿ÉÒÔ°Ñ¶à¸öÏÔÊ¾ºÏ²¢µ½Ò»Æð»òÕßµ¥¶ÀÏÔÊ¾¡£

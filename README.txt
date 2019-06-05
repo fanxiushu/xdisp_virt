@@ -49,6 +49,18 @@ Bug fixed:
 	这里的html目录分享了网页客户端的全部源代码。
 	除此之外，其他源代码并不开源，以此带来不便敬请谅解。
    
+使用到的开源库如下：
+    1，x264和openh264用于图像H264编码。mfx_dispatch和ffmpeg用于H264的Intel显卡的QSV硬编码和Nvidia显卡硬编码。
+    2，ffmpeg用于MPEG4，MPEG2，MPEG1编码，以及一些图像和音频转换，rtsp，rtmp推流，以及AAC，FLAC，AC3，MP2等音频编码等。 
+    3，libvpx用于VP8和VP9编码和解码。
+    4，libjpeg-turbo用于JPEG图像编码和解码，以及RGB和YUV格式转换。
+    5，libyuv用于图像快速缩放， 以及RGB与YUV格式转换。
+    6，fdk-aac和ffmpeg用于AAC编码，jbig2用于二值图像编码解码。
+    7，x265用于H265编码。
+    8，zlib,liblzma,lzo用于无损压缩。 
+    9，openssl用于网络SSL加密传输。
+   10，unqlite对象数据库用于保存配置参数。
+   11，jsmpeg和h264bsd，以及一些其他相关js开源库用于网页客户端javascript解码图像和音频。
 
 相关博客：
 https://blog.csdn.net/fanxiushu/article/details/81905680

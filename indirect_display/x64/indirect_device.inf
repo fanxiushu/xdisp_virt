@@ -1,0 +1,62 @@
+;
+;
+;    Fanxiushu 2019 , ÐéÄâIndirect Display ×ÜÏßÇý¶¯
+;
+;
+[Version]
+Signature="$Windows NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%FXS%
+DriverVer=06/19/2019,1.0.0.1
+CatalogFile=indirect_device.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+99 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+indirect_device.sys  = 99,,
+
+;*****************************************
+;
+;*****************************************
+
+[Manufacturer]
+%FXS%=Standard,NTamd64
+
+[Standard]
+%DeviceDesc%=Bus_Device, %HardwareId%
+
+[Standard.NTamd64]
+%DeviceDesc%=Bus_Device, %HardwareId%
+
+[Bus_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+indirect_device.sys
+
+;-------------- Service installation
+[Bus_Device.NT.Services]
+AddService = indirect_device,0x00000002, indirect_device_Inst
+
+; -------------- indirect display driver install sections
+[indirect_device_Inst]
+DisplayName    = %SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\indirect_device.sys
+LoadOrderGroup = Extended Base
+
+
+[Strings]
+FXS = "Fanxiushu"
+DiskId1 = "Fanxiushu Indirect Display Device System Installation Disk1"
+DeviceDesc = "Fanxiushu Indirect Display Bus System Device"
+SVCDESC = "Fanxiushu Indirect DIsplay Device System Driver"
+
+HardwareId ="root\*indirect_device"

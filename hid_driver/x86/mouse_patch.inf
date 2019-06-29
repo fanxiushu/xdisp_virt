@@ -1,0 +1,72 @@
+;
+;  为了解决 WIN7,WIN8 平台多显示器情况下，HID绝对鼠标驱动默认只识别主显示器的鼠标过滤驱动。
+;
+;  2019-06-28  mouse_patch for hid_input
+
+[Version]
+Signature="$Windows NT$"
+Provider=%Prov%
+ClassGUID={4D36E96F-E325-11CE-BFC1-08002BE10318}
+Class=Mouse
+CatalogFile=mouse_patch.cat
+DriverVer=06/27/2019,1.0.0.1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; copy files
+[SourceDisksFiles]
+mouse_patch.sys = 99,,
+
+[SourceDisksNames]
+99 = %DiskName%,,,""
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Install
+[Manufacturer]
+%Prov%=Vendor, NTx86, NTamd64
+
+[Vendor.NTx86]
+%DevDesc%=PatchInst, %HardwareId%
+
+[Vendor.NTamd64]
+%DevDesc%=PatchInst, %HardwareId%
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[PatchInst.NT]
+Include=msmouse.inf
+Needs=HID_Mouse_Inst.NT
+CopyFiles=sysCopyFiles
+
+[sysCopyFiles]
+mouse_patch.sys
+
+[PatchInst.NT.HW]
+AddReg = PatchInst.HW.AddReg
+Include=msmouse.inf
+Needs=HID_Mouse_Inst.NT.HW
+
+[PatchInst.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"mouse_patch"
+
+[PatchInst.NT.Services]
+AddService = mouse_patch,  , mousepatch_Service_Inst
+Include=msmouse.inf
+Needs=HID_Mouse_Inst.NT.Services
+
+[mousepatch_Service_Inst]
+DisplayName    = %SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+LoadOrderGroup = Pointer Port
+ServiceBinary  = %12%\mouse_patch.sys
+
+[Strings]
+Prov= "Fanxiushu"
+DiskName = "Fanxiushu Absolute Mouse Position Patch Installation Disk"
+DevDesc =  "Fanxiushu Absolute Mouse Position Patch Device"
+DevSvc =   "Fanxiushu Absolute Mouse Position Patch Service"
+HardwareId = "HID\FanxiushuVirtualHidDevice&Col03"
+

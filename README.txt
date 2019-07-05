@@ -38,10 +38,10 @@ indirect_display 主要用于WIN10以上平台模拟虚拟显示器。
 WIN7，重启按F8；WIN10 ，按住Shift + 重启。更具体你可以搜索其他相关资料。
 
 2019-6月更新：
-1，优化RGB转YUV代码，使得转换时间更少，转换之后的图像质量更好。
-2，修改HID虚拟鼠标键盘驱动在WIN10 1703,1709版本中蓝屏问题，
-     同时修正在多显示器的环境中，HID虚拟绝对鼠标 在WIN7，WIN8，WIN10 1511 这些系统只识别主显示器的问题。
-3，WIN10 1607 之后的系统，增加 Indirect Display驱动添加新的虚拟显示器。
+   1，优化RGB转YUV代码，使得转换时间更少，转换之后的图像质量更好。
+   2，修改HID虚拟鼠标键盘驱动在WIN10 1703,1709版本中蓝屏问题，
+         同时修正在多显示器的环境中，HID虚拟绝对鼠标 在WIN7，WIN8，WIN10 1511 这些系统只识别主显示器的问题。
+   3，WIN10 1607 之后的系统，增加 Indirect Display驱动添加新的虚拟显示器。
 
 2019-5月更新：
     1，新增加了对 主程序 xdisp_virt.exe的xdisp_virt.ini 配置文件，可以通过网页方式进行配置，不用再像以前一样非得打开xdisp_virt.ini文件来做配置。
@@ -62,10 +62,10 @@ Bug fixed:
 
 程序开发及开放源代码说明：
 	xdisp_virt和xdisp_server程序都是使用C/C++语言，VS2015编译生成，所有使用到的开源库均是静态编译进程序。
-	CSDN上分享了第一版本的抓屏部分代码，GITHUB分享了xdisp_virt的推流子功能代码push_stream
-	（可以推流到RTSP,RTMP服务器或者保存为本地MP4,MKV视频文件）,
-	这里的html目录分享了网页客户端的全部源代码。
+	CSDN上分享了第一版本的抓屏部分代码，GITHUB分享了xdisp_virt的推流子功能代码stream_push
+	（可以推流到RTSP,RTMP服务器或者保存为本地MP4,MKV视频文件）。这里的html目录分享了网页客户端的全部源代码。	
 	除此之外，其他源代码并不开源，以此带来不便敬请谅解。
+                同时 xdisp_virt程序远程图像会有水印，严禁商用。
    
 使用到的开源库如下：
     1，x264和openh264用于图像H264编码。mfx_dispatch和ffmpeg用于H264的Intel显卡的QSV硬编码和Nvidia显卡硬编码。

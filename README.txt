@@ -64,9 +64,8 @@ Bug fixed:
 	xdisp_virt和xdisp_server程序都是使用C/C++语言，VS2015编译生成，所有使用到的开源库均是静态编译进程序。
 	CSDN上分享了第一版本的抓屏部分代码，GITHUB分享了xdisp_virt的推流子功能代码stream_push
 	（可以推流到RTSP,RTMP服务器或者保存为本地MP4,MKV视频文件）。这里的html目录分享了网页客户端的全部源代码。	
-	除此之外，其他源代码并不开源，以此带来不便敬请谅解。
-                同时 xdisp_virt程序远程图像会有水印，严禁商用。
-   
+	除此之外，其他源代码并不开源，以此带来不便敬请谅解；同时 xdisp_virt程序远程图像会有水印，严禁商用。
+                
 使用到的开源库如下：
     1，x264和openh264用于图像H264编码。mfx_dispatch和ffmpeg用于H264的Intel显卡的QSV硬编码和Nvidia显卡硬编码。
     2，ffmpeg用于MPEG4，MPEG2，MPEG1编码，以及一些图像和音频转换，rtsp，rtmp推流，以及AAC，FLAC，AC3，MP2等音频编码等。 

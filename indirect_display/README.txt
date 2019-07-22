@@ -10,7 +10,7 @@
 安装成功后会在 显示适配器出现 ”Fanxiushu Indirect Display Driver “
 
 驱动签名签名情况：
-驱动没做任何签名，如果想要安装成功，虚拟你自己签名，
+驱动没做任何签名，如果想要安装成功，需要你自己签名，
 或者 按住 Shift + 重启， 进入”配置启动“，选择禁用驱动强制签名。
 
 使用办法：
@@ -39,4 +39,44 @@ https://blog.csdn.net/fanxiushu/article/details/93524220
 
 fanxiushu 2019-06-27
 
+===========================================
+This is the Indirect Display virtual display driver that supports WIN10 1607.
+
+Installation method:
+Open Device Manager, Action -> Add Obsolete Hardware, all the way to "Next" until you choose to install from disk,
+Go to the corresponding driver directory and select indirect_device.inf.
+“Fanxiushu Indirect Display Bus System Device” will appear.
+After installation, a "Fanxiushu-Indirect-Device1" with an exclamation point will appear in the device manager.
+Right-click, "Update Driver" and select the indirect_display.inf installation in the same directory.
+After the installation is successful, the display adapter will appear "Fanxiushu Indirect Display Driver"
+
+Drive signature signature situation:
+The driver does not make any signatures. If you want to install successfully, you need to sign it yourself.
+Or Hold Shift + Restart to enter "Configuration Startup" and select Disable Driver Force Signature.
+
+How to use:
+After the driver is successfully installed, run indirect_display_plug.exe to simulate inserting the virtual display and follow the program instructions.
+Run the indirect_display_image program to capture the image of the corresponding virtual display and display it. This is a simple test program.
+Once the monitor is plugged in, a new virtual display will appear in the system, which can be set to expand the desktop, set the resolution, and more.
+At this time, you can use the remote control program such as xdisp_virt or teamviewer to support multi-monitor function to view and control the virtual display desktop.
+To a certain extent, it can replace the software that specifically implements display expansion such as duetdisplay, DisplayLink, iDIsplay, etc.
+
+System support:
+The currently tested systems include: 1703, 1709, 1803, 1809, 1903 of the WIN10 system. The test is a 64-bit system, and there is no problem.
+Only 1903 was tested on real computers, and other versions were tested in the vmware environment.
+As for the 1607 version of WIN10, in the vmware environment, the test failed, and the real machine has not been tested.
+Failure: Calling the IddCxAdapterInitAsync function will appear
+Invalid parameter passed to C runtime function error,
+And IddCxAdapterInitAsync returns 0xC000009A (STATUS_INSUFFICIENT_RESOURCES) error.
+The reason is temporarily unknown.
+
+Before WIN10 1607, if the system wants to simulate a virtual display:
+Open Control Panel -> Display -> Screen Resolution, "Change Display Appearance", select "Detect", and "No other monitors will be detected" will appear. After selecting,
+In the "Multi-Monitor" column below, you will see "Always try to connect on the following objects: VGA", select it, and you will create a new virtual display.
+Of course this new display does not support 3D acceleration.
+
+Details:
+Https://blog.csdn.net/fanxiushu/article/details/93524220
+
+fanxiushu 2017-2019
 

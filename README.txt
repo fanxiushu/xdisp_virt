@@ -55,10 +55,9 @@ WIN7，重启按F8；WIN10 ，按住Shift + 重启。更具体你可以搜索其他相关资料。
      2，  在WIN7，WIN10等平台，增加 DirectX HOOK 方式截取全屏独占程序, 主要目的是为了能在远程控制中玩某些大型的3D全屏独占游戏。
      3，  增加虚拟HID鼠标键盘驱动来代替应用层的鼠标键盘模拟控制，主要目的是为了解决某些游戏无法从应用层模拟鼠标键盘控制。
 
-
-Bug fixed:
+2019-01月更新:
     1, 修正网页客户端在最新chrome或firefox中，远程显示窗口不能根据浏览器窗口自动适配问题，
-	   问题出在 xdisp_h264.js脚本函数changeCanvasSize中对全屏判断。2019-01-25
+	   问题出在 xdisp_h264.js脚本函数changeCanvasSize中对全屏判断。
 
 程序开发及开放源代码说明：
 	xdisp_virt和xdisp_server程序都是使用C/C++语言，VS2015编译生成，所有使用到的开源库均是静态编译进程序。
@@ -79,9 +78,32 @@ Bug fixed:
    10，unqlite对象数据库用于保存配置参数。
    11，jsmpeg和h264bsd，以及一些其他相关js开源库用于网页客户端javascript解码图像和音频。
 
+
+原生客户端未发布的的原因，以及网页客户端性能注意问题：
+
+原生客户端一直都没有发布出来，并不是不存在原生客户端程序，
+而是因为xdisp_virt有许多配置参数，原生客户端都没有去实现，也懒得去开发。
+只实现了核心的远程控制部分，所以属于半成品，况且也只实现了windows平台的原生客户端。
+但是某些要求很高的场所，比如要达到 60 FPS 的远程展现速度，2K，4K桌面远程展现，
+这样情况下网页客户端运行起来是非常吃力的，
+即使配置良好的机器运行chrome或firefox来远程控制xdisp_virt机器也比较吃力。
+xdisp_virt程序经过多次改进优化，性能基本能达到比较好的效果。
+比如在很早前的ATOM，N270这样的CPU的上网本中运行WINXP，使用xdisp_virt远程起来都能基本上能用。
+但是这样配置的CPU运行chrome或Firefox都非常吃力，更别说在网页中进行远程控制。
+所以往往造成网页客户端需要的机器配置要比运行xdisp_virt被控制端的还要高。
+
+在多次测试中，基本上总结出两个改进网页客户端性能的问题，
+1，不管是chrome或者Firefox或其他现代浏览器，必须开启浏览器中的硬件加速选项，否则不管多强悍的机器，远程起来依然像蜗牛速度一样。
+2，网页客户端的显卡支持的最大分辨率达不到被控端分辨率，也会造成网页客户端很慢。
+     比如运行chrome网页客户端的设备（包括手机，平板，电脑等）的显卡分辨率最大只能达到 1920X1080， 
+     但是被控制端的桌面图像是2560X1600甚至更高， 这种情况下因为网页客户端的显卡无法进行硬件加速，所以速度很慢。
+以上就是多次测试总结的，如果使用中或者开发过程中发现其他提升网页客户端的性能的办法，不妨告知。
+
 相关博客：
 https://blog.csdn.net/fanxiushu/article/details/81905680
 https://blog.csdn.net/fanxiushu/article/details/78869719
+
+fanxiushu 2017-2019
 
 =====================================================================
 This is the latest version of the remote desktop control program based on the windows platform (version two).
@@ -107,15 +129,17 @@ It has been configured as a default setting to run the EXE program directly.
 xdisp_server.exe provides server transit to solve intranet access problems and to bring together multiple controlled machines.
 There are certain benefits for maintainers.
 
-The driver directory is mirrored and has no signature.
-The HTML directory contains all the web pages and JavaScript scripts, 
+The "driver" directory is mirrored and has no signature.
+The "HTML" directory contains all the web pages and JavaScript scripts, 
 and the HTML directory has been packed into the xdisp_virt.exe program.
-The image directory is some effect diagram of the program running.
+The "image" directory is some effect diagram of the program running.
+The "hid_driver" director is a virtual HID mouse keyboard driver with no signature.
+"Indirect_display" directory is mainly used to simulate virtual displays on platforms above WIN10.
 
 for detail:
 https://blog.csdn.net/fanxiushu/article/details/81905680
 https://blog.csdn.net/fanxiushu/article/details/78869719
 
-fanxiushu 2017-2018
+fanxiushu 2017-2019
 
 

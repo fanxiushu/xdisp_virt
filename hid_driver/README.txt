@@ -23,3 +23,28 @@ mouse_patch.sys 鼠标过滤驱动解决了此问题，使得HID绝对鼠标能识别所有显示器。
 
 fanxiushu 2019-04-29 06-30
 
+=========================================
+This is the HID virtual mouse and keyboard driver for xdisp_virt.
+
+installation:
+Go to the directory corresponding to the 64-bit or 32-bit system and run install.bat to perform the installation.
+After the installation is successful, the HID device of “Fanxiushu Virtual HID Input Device” will appear in the device manager.
+At the same time, an HID keyboard and two HID mice (relative to the mouse and absolute mouse) are generated.
+
+After the installation is successful, restarting the xdisp_virt.exe program will automatically use the driver keyboard and mouse instead of the application layer's analog input.
+
+Uninstall:
+Enter the corresponding directory, run uninstall.bat to perform driver uninstallation, and make sure that xdisp_virt.exe is not running before uninstalling.
+
+The driver does not have a signature. To properly install on a 64-bit system, you need to sign it yourself, or let the system run in the "Forbidden Drive Forced Signature" mode.
+
+This is a driver added for some games that cannot use the application layer's mouse and keyboard emulation.
+Ordinary remote control can also use this driver.
+
+************************************************** *****************
+Virtual HID absolute mouse coordinates correction patch under multiple monitors:
+In a multi-monitor environment, in systems such as WIN7, WIN8, and WIN10 1511, the HID absolute mouse only recognizes the primary display by default.
+The mouse_patch.sys mouse filter driver solves this problem, making the HID absolute mouse recognize all displays.
+After installing the above virtual mouse and keyboard driver, run install_mouse_patch.bat to install.
+
+fanxiushu 2017-2019

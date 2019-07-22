@@ -67,6 +67,35 @@
    安装hid_driver目录中对应的驱动，然后重启xdisp_virt程序，就会自动切换到虚拟鼠标键盘驱动控制。
    这是为某些全屏游戏无法通过应用层模拟鼠标键盘控制而增加的功能。
 
- fanxiushu 2019-04-21
+ fanxiushu 2017-2019
+
+=======================================
+The directory contains:
+   The xdisp_virt.exe program, xdisp_virt.ini is its configuration file.
+   The xdisp_server.exe program, xdisp_server.ini, is its configuration file.
+   Dx_hook32.dll, dxhook64.dll is a dynamic library that automatically injects into each interface process hooking DirectX and OpenGL drawing.
+   The configuration file has detailed descriptions of each field.
+   Already configured as the default, you can run the exe program directly.
+   Xdisp_server.exe provides server relay to solve problems such as intranet access, and can bring together multiple controlled machines.
+   There are certain benefits for maintenance personnel
+
+Instructions:
+   Copy xdisp_virt.exe, xdisp_virt.ini to a directory on your local computer.
+   Run xdisp_virt.exe directly as prompted. The default port is 11000.
+   You can do various configurations by opening http://localhost:11000 locally with your browser.
+   Suppose the machine running xdisp_virt is 192.168.1.1
+   Open http://192.168.1.1:11000 on other PCs, mobile phones, tablets and other browsers to remotely control.
+   The program will generate the xdisp_virt.db file, which is the unique ID for saving various configuration parameters and identifying different machines. Do not copy this file to a different machine.
+
+   Copy xdisp_server.exe and xdisp_server.ini to the public network server, the default port is 32000.
+   Then all xdisp_virt settings are connected to the server running xdisp_server.
+   Suppose the public network IP of the xdisp_server machine is 13.14.15.16
+   Then open http://13.14.15.16:32000 on other PCs, mobile phones, tablets and other browsers to see all the xdisp_virt lists that are connected.
+   This allows remote control across domain LANs.
+
+   If necessary, you can install the mirror driver in the driver directory and the virtual mouse and keyboard driver in the hid_driver directory.
+
+fanxiushu 2017-2019
+
 
      

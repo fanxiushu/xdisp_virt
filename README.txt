@@ -39,7 +39,14 @@ WIN7，重启按F8；WIN10 ，按住Shift + 重启。更具体你可以搜索其
 
 2019-12月 - 2020-1月更新：
 1，移植xdisp_virt程序到 macOS，linux平台。
+     详细信息，请查看：
+        https://blog.csdn.net/fanxiushu/article/details/103428592
+        https://blog.csdn.net/fanxiushu/article/details/103529339
+        https://blog.csdn.net/fanxiushu/article/details/103662309
+        https://blog.csdn.net/fanxiushu/article/details/103772801
 2，给xdisp_virt集成RTSP,RTMP,HTTP-FLV,HLS直播服务端功能。
+     详细信息，请查看：
+        https://blog.csdn.net/fanxiushu/article/details/104078323
 3，添加手指触摸控制，给移动平台浏览器控制PC提供了方便，不过比起鼠标键盘控制还是不能比较。
 
 2019-6月更新：

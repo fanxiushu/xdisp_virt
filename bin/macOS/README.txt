@@ -4,14 +4,13 @@
 
 程序在 macOS10.15 平台下编译。
 桌面图像采集基于 CoreGraphics，使用CGDisplayStreamCreateWithDispatchQueue函数采集。
-采集图像的详细介绍查看：
-    https://blog.csdn.net/fanxiushu/article/details/103662309
 
 经测试，程序可以在macOS 的 10.10， 10.13,  10.15版本的平台中运行，10.14 没测试过，应该也能正常运行。
 最低支持10.10 版本。
 在10.14，10.15以上会弹出系统鉴权确认框。
 
 macOS下的xdisp_virt程序运行方式：
+下载xdisp_virt和xdisp_virt.ini文件到本地电脑某个目录下。
 系统登录到桌面图形界面，然后打开Terminal终端，在终端中运行 xdisp_virt。当然直接双击也能运行。
 10.14，10.15以上系统中，因为是在Terminal终端中运行，系统鉴权框也是针对Terminal终端。
 
@@ -19,3 +18,4 @@ macOS下的xdisp_virt程序运行方式：
 macOS版本的xdisp_virt程序只能系统正常登录到图形界面，在Terminal终端中运行 xdisp_virt。
 目前不能全程自动化，也许以后能解决。
 
+                                                                                                     

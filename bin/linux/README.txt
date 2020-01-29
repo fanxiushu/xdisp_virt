@@ -16,6 +16,7 @@ Ubuntu18则无此问题.
 不过需要把GLIBC运行库的版本更新到12.17以上。
 
 linux下的xdisp_virt程序运行方式：
+下载xdisp_virt和xdisp_virt.ini文件到本地电脑某个目录下。
 系统登录到桌面图形界面（X Window 图形桌面），然后打开Terminal终端，在终端中运行 xdisp_virt。
 
 不像windows平台下的xdisp_virt，能全程以服务方式运行，并且从启动，登录，重启都能全程控制远程机器。

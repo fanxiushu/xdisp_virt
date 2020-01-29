@@ -4,6 +4,8 @@
 
 程序在 CentOS7 平台下编译。
 桌面图像采集基于 X Window，使用XShmGetImage 函数采集。
+采集图像的详细介绍查看：
+    https://blog.csdn.net/fanxiushu/article/details/103772801
 
 经测试，程序可以在CentOS7，CentOS8，Redhat linux AS7， Ubuntu18，其他同类linux估计也能正常运行。
 其中CentOS7和CentOS8，如果按照系统默认启动到图形界面，会采集不到图像，

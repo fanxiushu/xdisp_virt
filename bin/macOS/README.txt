@@ -4,6 +4,8 @@
 
 程序在 macOS10.15 平台下编译。
 桌面图像采集基于 CoreGraphics，使用CGDisplayStreamCreateWithDispatchQueue函数采集。
+采集图像的详细介绍查看：
+    https://blog.csdn.net/fanxiushu/article/details/103662309
 
 经测试，程序可以在macOS 的 10.10， 10.13,  10.15版本的平台中运行，10.14 没测试过，应该也能正常运行。
 最低支持10.10 版本。

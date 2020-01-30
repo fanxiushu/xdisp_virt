@@ -1,7 +1,13 @@
-﻿目录包含：
+
+下载说明：
+  此程序体积较大，包括多个平台的版本，如果在GITHUB网站下载xdisp_virt困难，可前往CSDN下载：
+  https://download.csdn.net/download/fanxiushu/12125875
+  不过如果以后有版本修正，可能还是得从GITHUB下载。
+
+目录包含：
    xdisp_virt.exe程序，xdisp_virt.ini是它的配置文件，
    xdisp_server.exe程序，xdisp_server.ini是它的配置文件。
-   dx_hook32.dll, dxhook64.dll是自动注入进每个界面进程挂钩DirectX和OpenGL绘图的动态库。
+   linux目录是xdisp_virt对应的linux版本，macOS目录是xdisp_virt对应的macOS版本。
    配置文件有详细的每个字段说明。
    已经配置成默认设置，可以直接运行exe程序。
    xdisp_server.exe提供了服务器中转解决内网访问等问题, 同时能把多台被控制机器集中到一起，

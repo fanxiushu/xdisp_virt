@@ -1,0 +1,119 @@
+;
+; by fanxiushu 2020-02-06, for virtual AVstream Camera
+;
+
+[Version]
+signature="$Windows NT$"
+;Class=Media
+;ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+;;  使用下面的CLASS才能被 WIN10 上的UWP相机等程序访问
+Class=Image
+ClassGUID={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%Fxs%
+Catalogfile=xcam_stream.cat
+DriverVer=02/05/2020,1.0.0.1
+
+[SourceDisksNames]
+99=%diskid1%,,,
+
+[SourceDisksFiles]
+xcam_stream.sys=99
+
+[DestinationDirs]
+DefaultDestDir=12
+xcam_stream.CopyFiles=12
+
+[xcam_stream.CopyFiles]
+xcam_stream.sys
+
+[Manufacturer]
+%Fxs%=avsMfact,NTamd64
+
+[avsMfact]
+%avs.DevDesc%=avsInst, %avs.HWID%
+[avsMfact.NTamd64]
+%avs.DevDesc%=avsInst, %avs.HWID%
+
+[avsInst.NT]
+Include=ks.inf, KSCAPTUR.inf,wdmaudio.inf
+Needs=KS.Registration,KSCAPTUR.Registration.NT,wdmaudio.registration
+CopyFiles=xcam_stream.CopyFiles
+AddReg=audio.xcam.addReg
+
+[audio.xcam.addReg]
+HKR,,AssociatedFilters,,"wdmaud,redbook"
+HKR,,Driver,,xcam_stream.sys
+HKR,,NTMPDriver,,"xcam_stream.sys,sbemul.sys"
+
+HKR,,CLSID,,%Proxy.CLSID%
+
+HKR,Drivers,SubClasses,,"wave,mixer"
+
+HKR,Drivers\wave\wdmaud.drv, Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+
+HKR,Drivers\wave\wdmaud.drv,Description,,%avs.Audio.FriendlyName%
+HKR,Drivers\mixer\wdmaud.drv,Description,,%avs.Audio.FriendlyName%
+
+[avsInst.NT.Interfaces]
+AddInterface=%KSCATEGORY_VIDEO_CAMERA%,"fanxiushu_xcam_video",CaptureInterface.NT,
+AddInterface=%KSCATEGORY_VIDEO%,"fanxiushu_xcam_video",CaptureInterface.NT,
+AddInterface=%KSCATEGORY_CAPTURE%,"fanxiushu_xcam_video",CaptureInterface.NT,
+AddInterface=%KSCATEGORY_AUDIO%,"fanxiushu_xcam_audio",AudioInterface.NT,
+AddInterface=%KSCATEGORY_CAPTURE%,"fanxiushu_xcam_audio",AudioInterface.NT,
+
+[CaptureInterface.NT]
+AddReg=avsInst.xcam.AddReg
+
+[AudioInterface.NT]
+AddReg=avsInst.audio.AddReg
+
+[avsInst.xcam.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%avs.Xcam.FriendlyName%
+
+[avsInst.audio.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%avs.Audio.FriendlyName%
+
+;---------------------------------------------------------------
+;                S e r v i c e s  
+;---------------------------------------------------------------
+
+[avsInst.NT.Services]
+AddService=xcam_stream, 0x00000002, avsInst.ServiceInstall
+
+[avsInst.NTamd64.Services]
+AddService=xcam_stream, 0x00000002, avsInst.ServiceInstall
+
+[avsInst.ServiceInstall]
+DisplayName=%avs.DevDesc%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_DEMAND_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%12%\xcam_stream.sys
+
+; Strings
+
+[Strings]
+
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+REG_DWORD=0x00010001
+
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_VIDEO_CAMERA="{E5323777-F976-4f5b-9B55-B94699C46E44}"
+KSCATEGORY_VIDEO="{6994AD05-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_AUDIO="{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_RENDER="{65E8773E-8F56-11D0-A3B9-00A0C9223196}"
+
+Fxs = "Fanxiushu"
+diskid1="Fanxiushu Installation Disk"
+avs.DevDesc="Fanxiushu Virtual Camera/Microphone"
+avs.Xcam.FriendlyName="Fanxiushu Virtual Camera"
+avs.Audio.FriendlyName="Fanxiushu Virtual Microphone"
+
+avs.HWID="*FanxiushuVirtualCameraMicrophone"
+

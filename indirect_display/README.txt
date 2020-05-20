@@ -40,6 +40,7 @@ WIN10 1607之前系统如果想要模拟虚拟显示器：
 
 详情：
 https://blog.csdn.net/fanxiushu/article/details/93524220
+https://blog.csdn.net/fanxiushu/article/details/106238853
 
 fanxiushu 2019-06-27
 
@@ -81,6 +82,7 @@ Of course this new display does not support 3D acceleration.
 
 Details:
 Https://blog.csdn.net/fanxiushu/article/details/93524220
+https://blog.csdn.net/fanxiushu/article/details/106238853
 
 fanxiushu 2017-2019
 

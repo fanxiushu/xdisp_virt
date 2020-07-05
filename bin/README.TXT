@@ -28,6 +28,16 @@
    从而可跨越域局域网远程控制。
 
    如果有必要，可以安装driver目录下的镜像驱动和hid_driver目录下的虚拟鼠标键盘驱动。
+   
+2020-06月 更新：
+1，网页客户端Javascript解码，全部替换成统一使用编译成wasm的ffmpeg，因此能解码xdisp_virt提供的大部分音频和图像。
+   这是本次更新的最大改变，以前是不会使用emscripten工具来编译ffmpeg，因此从GITHUB下载了使用了一些已经编译好的wasm解码库，但是解码能力有限。
+   此次使用emscripten编译ffmpeg之后，很多以前无法想的都能在网页客户端解码处理了。
+   支持xdisp_virt提供的所有AAC,AC3,FLAC,MP2音频格式解码。支持H264，MPEG4，MPEG2，MPEG1,VP8，VP9，H265等图像解码。
+   对H264，除了支持Baseline外，还支持Main，High等方式，同时对H264硬编码的解码也不再像以前使用h264bsd（Android上的开源库）那样卡顿。
+2，实现桌面图像的滤镜特效，类似Photoshop那样的特效。具体介绍可以查看：
+     https://blog.csdn.net/fanxiushu/article/details/106950167
+3，可以实时查看当前动态帧率，流量带宽等信息，以及一些其他小功能的增加。
 
 2019-12月 - 2020-1月更新：
 1，移植xdisp_virt程序到 macOS，linux平台。

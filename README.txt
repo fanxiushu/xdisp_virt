@@ -16,7 +16,7 @@ CSDN: https://blog.csdn.net/fanxiushu
 GITHUB: https://github.com/fanxiushu
 
 此程序体积较大，包括多个平台的版本，如果在GITHUB网站下载xdisp_virt困难，可前往CSDN下载：
-https://download.csdn.net/download/fanxiushu/12125875
+https://download.csdn.net/download/fanxiushu/12125875  （此CSDN链接只提供到2020-1月份版本，之后的更新版本请从GITHUB下载）
 不过如果以后有版本修正，可能还是得从GITHUB下载。
 
 bin目录包含所有执行文件

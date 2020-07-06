@@ -116,7 +116,7 @@ WIN7，重启按F8；WIN10 ，按住Shift + 重启。更具体你可以搜索其
     8，zlib,liblzma,lzo用于无损压缩。 
     9，openssl用于网络SSL加密传输。
    10，unqlite对象数据库用于保存配置参数。
-   11，jsmpeg和h264bsd，以及一些其他相关js开源库用于网页客户端javascript解码图像和音频。
+   11，使用emscripten工具编译ffmpeg成wasm，从而实现javascript网页端音频和图像解码。
 
 远程控制网络带宽占用情况：
    本软件主要是通过对桌面图像压缩成H264， 然后在网络中传输。

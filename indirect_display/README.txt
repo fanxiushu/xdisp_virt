@@ -1,6 +1,19 @@
 
 这是支持 WIN10 1607 之后的 Indirect Display 虚拟显示器驱动。
 
+*****
+
+关于IDD（Indirect Display Driver）虚拟显卡如何抓取图像：
+（问得较多，不胜其烦）
+其实IDD虚拟显卡抓图是非常简单的，就按照正常普通显卡那样，在应用层直接使用GDI 或者DXGI方式抓图就可以了。
+
+IDD虚拟显卡相对于windows平台的驱动框架来说，是非常简单的一类驱动框架，
+比起windows的其他驱动来说，已经是很简单的了。
+这主要得益于微软把类似于 WDDM HOOK的概念直接集成到Windows10 内核中。
+除非是需要把IDD显卡接入到真实比如USB接口的显示器上，都没必要在IDD内部抓图，直接按照普通方式 GDI+DXGI截屏就可以了。
+
+********以下是本驱动的安装和使用方法说明
+
 安装办法：
 打开 设备管理器，操作-> 添加过时硬件，一路“下一步”，直到选择从磁盘安装，
 进入对应的驱动目录下，选择 indirect_device.inf，
@@ -84,5 +97,5 @@ Details:
 Https://blog.csdn.net/fanxiushu/article/details/93524220
 https://blog.csdn.net/fanxiushu/article/details/106238853
 
-fanxiushu 2017-2019
+fanxiushu 2017-2020
 

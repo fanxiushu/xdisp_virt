@@ -11,6 +11,8 @@ IDD虚拟显卡相对于windows平台的驱动框架来说，是非常简单的�
 比起windows的其他驱动来说，已经是很简单的了。
 这主要得益于微软把类似于 WDDM HOOK的概念直接集成到Windows10 内核中。
 除非是需要把IDD显卡接入到真实比如USB接口的显示器上，都没必要在IDD内部抓图，直接按照普通方式 GDI+DXGI截屏就可以了。
+其原理和开发流程，详情可查询如下链接：
+https://blog.csdn.net/fanxiushu/article/details/93524220
 
 ********以下是本驱动的安装和使用方法说明
 

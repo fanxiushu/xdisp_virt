@@ -1,25 +1,25 @@
-ÕâÊÇxdisp_virt¶ÔÓ¦µÄHIDĞéÄâÊó±ê¼üÅÌÇı¶¯¡£
+è¿™æ˜¯xdisp_virtå¯¹åº”çš„HIDè™šæ‹Ÿé¼ æ ‡é”®ç›˜é©±åŠ¨ï¼Œ ä»¥åŠæ–°å¢åŠ çš„10æŒ‡è§¦æ‘¸å±é©±åŠ¨ã€‚
 
-°²×°£º
-½øÈë¶ÔÓ¦64Î»»òÕß32Î»ÏµÍ³µÄÄ¿Â¼ÖĞ£¬ÔËĞĞ install.bat Ö´ĞĞ°²×°¡£
-°²×°³É¹¦ºó£¬»áÔÚÉè±¸¹ÜÀíÆ÷ÖĞ³öÏÖ ¡°Fanxiushu Virtual HID Input Device¡±µÄ HIDÉè±¸£¬
-²¢Í¬Ê±Éú³ÉÒ»¸ö HID¼üÅÌºÍÁ½¸öHIDÊó±ê£¨Ïà¶ÔÊó±êºÍ¾ø¶ÔÊó±ê£©¡£
+å®‰è£…ï¼š
+è¿›å…¥å¯¹åº”64ä½æˆ–è€…32ä½ç³»ç»Ÿçš„ç›®å½•ä¸­ï¼Œè¿è¡Œ install.bat æ‰§è¡Œå®‰è£…ã€‚
+å®‰è£…æˆåŠŸåï¼Œä¼šåœ¨è®¾å¤‡ç®¡ç†å™¨ä¸­å‡ºç° â€œFanxiushu Virtual HID Input Deviceâ€çš„ HIDè®¾å¤‡ï¼Œ
+å¹¶åŒæ—¶ç”Ÿæˆä¸€ä¸ª HIDé”®ç›˜å’Œä¸¤ä¸ªHIDé¼ æ ‡ï¼ˆç›¸å¯¹é¼ æ ‡å’Œç»å¯¹é¼ æ ‡ï¼‰ã€‚
 
-°²×°³É¹¦ºó£¬ÖØÆô xdisp_virt.exe³ÌĞò£¬¾Í»á×Ô¶¯Ê¹ÓÃÇı¶¯¼üÅÌºÍÊó±êÀ´´úÌæÓ¦ÓÃ²ãµÄÄ£ÄâÊäÈë¡£
+å®‰è£…æˆåŠŸåï¼Œé‡å¯ xdisp_virt.exeç¨‹åºï¼Œå°±ä¼šè‡ªåŠ¨ä½¿ç”¨é©±åŠ¨é”®ç›˜å’Œé¼ æ ‡æ¥ä»£æ›¿åº”ç”¨å±‚çš„æ¨¡æ‹Ÿè¾“å…¥ã€‚
 
-Ğ¶ÔØ£º
-½øÈë¶ÔÓ¦µÄÄ¿Â¼£¬ÔËĞĞ uninstall.batÖ´ĞĞÇı¶¯Ğ¶ÔØ£¬Ğ¶ÔØÇ°ÇëÈ·±£ xdisp_virt.exe²»ÔÚÔËĞĞ¡£
+å¸è½½ï¼š
+è¿›å…¥å¯¹åº”çš„ç›®å½•ï¼Œè¿è¡Œ uninstall.batæ‰§è¡Œé©±åŠ¨å¸è½½ï¼Œå¸è½½å‰è¯·ç¡®ä¿ xdisp_virt.exeä¸åœ¨è¿è¡Œã€‚
 
-Çı¶¯Ã»ÓĞÇ©Ãû£¬ÒªÕıÈ·ÔÚ64Î»ÏµÍ³°²×°£¬ĞèÒªÄã×Ô¼ºÇ©Ãû£¬»òÕßÈÃÏµÍ³ÔËĞĞÔÚ¡°½ûÖ¹Çı¶¯Ç¿ÖÆÇ©Ãû¡±Ä£Ê½¡£
+é©±åŠ¨æ²¡æœ‰ç­¾åï¼Œè¦æ­£ç¡®åœ¨64ä½ç³»ç»Ÿå®‰è£…ï¼Œéœ€è¦ä½ è‡ªå·±ç­¾åï¼Œæˆ–è€…è®©ç³»ç»Ÿè¿è¡Œåœ¨â€œç¦æ­¢é©±åŠ¨å¼ºåˆ¶ç­¾åâ€æ¨¡å¼ã€‚
 
-ÕâÊÇÎªÄ³Ğ©ÓÎÏ·ÎŞ·¨Ê¹ÓÃÓ¦ÓÃ²ãµÄÊó±ê¼üÅÌÄ£Äâ¶øÌí¼ÓµÄÇı¶¯¡£
-ÆÕÍ¨Ô¶³Ì¿ØÖÆÍ¬Ñù¿ÉÒÔÊ¹ÓÃ±¾Çı¶¯.
+è¿™æ˜¯ä¸ºæŸäº›æ¸¸æˆæ— æ³•ä½¿ç”¨åº”ç”¨å±‚çš„é¼ æ ‡é”®ç›˜æ¨¡æ‹Ÿè€Œæ·»åŠ çš„é©±åŠ¨ã€‚
+æ™®é€šè¿œç¨‹æ§åˆ¶åŒæ ·å¯ä»¥ä½¿ç”¨æœ¬é©±åŠ¨.
 
 *******************************************************************
-ĞéÄâHID¾ø¶ÔÊó±ê×ø±êÔÚ¶àÏÔÊ¾Æ÷ÏÂµÄĞŞÕı²¹¶¡£º
-ÔÚ¶àÏÔÊ¾Æ÷»·¾³ÏÂ£¬WIN7, WIN8, WIN10 1511 ÕâÑùµÄÏµÍ³ÖĞ£¬HID¾ø¶ÔÊó±êÄ¬ÈÏÖ»Ê¶±ğÖ÷ÏÔÊ¾Æ÷¡£
-mouse_patch.sys Êó±ê¹ıÂËÇı¶¯½â¾öÁË´ËÎÊÌâ£¬Ê¹µÃHID¾ø¶ÔÊó±êÄÜÊ¶±ğËùÓĞÏÔÊ¾Æ÷¡£
-ÔÚ°²×°³É¹¦ÉÏÃæµÄĞéÄâÊó±ê¼üÅÌÇı¶¯Ö®ºó£¬ÔËĞĞ install_mouse_patch.bat°²×°¡£
+è™šæ‹ŸHIDç»å¯¹é¼ æ ‡åæ ‡åœ¨å¤šæ˜¾ç¤ºå™¨ä¸‹çš„ä¿®æ­£è¡¥ä¸ï¼š
+åœ¨å¤šæ˜¾ç¤ºå™¨ç¯å¢ƒä¸‹ï¼ŒWIN7, WIN8, WIN10 1511 è¿™æ ·çš„ç³»ç»Ÿä¸­ï¼ŒHIDç»å¯¹é¼ æ ‡é»˜è®¤åªè¯†åˆ«ä¸»æ˜¾ç¤ºå™¨ã€‚
+mouse_patch.sys é¼ æ ‡è¿‡æ»¤é©±åŠ¨è§£å†³äº†æ­¤é—®é¢˜ï¼Œä½¿å¾—HIDç»å¯¹é¼ æ ‡èƒ½è¯†åˆ«æ‰€æœ‰æ˜¾ç¤ºå™¨ã€‚
+åœ¨å®‰è£…æˆåŠŸä¸Šé¢çš„è™šæ‹Ÿé¼ æ ‡é”®ç›˜é©±åŠ¨ä¹‹åï¼Œè¿è¡Œ install_mouse_patch.batå®‰è£…ã€‚
 
 fanxiushu 2019-04-29 06-30
 
@@ -28,7 +28,7 @@ This is the HID virtual mouse and keyboard driver for xdisp_virt.
 
 installation:
 Go to the directory corresponding to the 64-bit or 32-bit system and run install.bat to perform the installation.
-After the installation is successful, the HID device of ¡°Fanxiushu Virtual HID Input Device¡± will appear in the device manager.
+After the installation is successful, the HID device of â€œFanxiushu Virtual HID Input Deviceâ€ will appear in the device manager.
 At the same time, an HID keyboard and two HID mice (relative to the mouse and absolute mouse) are generated.
 
 After the installation is successful, restarting the xdisp_virt.exe program will automatically use the driver keyboard and mouse instead of the application layer's analog input.

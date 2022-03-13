@@ -1,8 +1,9 @@
 ***** xdisp_virt整套工程不开源，也并不出售，目前也无商业版本，请勿商用。
 
-这是基于windows，macOS，linux等平台的远程桌面控制程序最新版本（版本三）。
+这是基于windows，macOS，linux等平台的远程桌面控制程序最新版本（版本四）。
 提供远程控制，支持摄像头，多路音频，直播推流，
 集成各种直播服务端，以及安防监控ONVIF控制协议。
+浏览器客户端支持 WebGL，WebRTC，MSE 等多种图像渲染方式。
 以及能在远程桌面顺畅的观看视频，玩游戏等多媒体娱乐功能。
 
 被控制端支持的平台包括 windows系列（从 XP，WIN7， WIN8， WIN10），macOS，Linux。
@@ -55,6 +56,14 @@ virtual_camera 把远程xdisp_virt作为音视频输入源，模拟出虚拟摄�
     同时 xdisp_virt 程序远程图像会有水印，严禁商用。
     目前也无商业化打算，如有此需求请使用其他软件。
    
+2022年3月更新：
+1，添加WebRTC和MSE功能，实现浏览器客户端使用video标签的图像渲染，使得远程桌面图像的显示与原生客户端程序的性能基本一致。
+   关于xdisp_virt实现的WebRTC和MSE的功能，可查阅如下连接：
+       https://blog.csdn.net/fanxiushu/article/details/122561371?spm=1001.2014.3001.5501
+       https://blog.csdn.net/fanxiushu/article/details/123461869?spm=1001.2014.3001.5501
+2，linux平台添加了 FrameBuffer 方式截屏，此功能使得登录到纯字符界面的linux系统可以远程桌面控制。
+3，远程桌面图像上的水印可以随意拖动。
+
 2021年更新：
 1，添加 ONVIF 安防监控控制协议，可以让桌面屏幕录制到NVR设备中。具体详情可以查看如下连接：
      https://blog.csdn.net/fanxiushu/article/details/121011712

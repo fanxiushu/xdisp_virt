@@ -34,8 +34,9 @@
    关于xdisp_virt实现的WebRTC和MSE的功能，可查阅如下连接：
        https://blog.csdn.net/fanxiushu/article/details/122561371?spm=1001.2014.3001.5501
        https://blog.csdn.net/fanxiushu/article/details/123461869?spm=1001.2014.3001.5501
-2，linux平台添加了 FrameBuffer 方式截屏，此功能使得登录到纯字符界面的linux系统可以远程桌面控制。
-3，远程桌面图像上的水印可以随意拖动。
+2，Windows平台的 hid_driver 驱动添加虚拟10指触摸屏驱动的功能。
+3，linux平台添加了 FrameBuffer 方式截屏，此功能使得登录到纯字符界面的linux系统可以远程桌面控制。
+4，远程桌面图像上的水印可以随意拖动。
 
 2021年更新：
 1，添加 ONVIF 安防监控控制协议，可以让桌面屏幕录制到NVR设备中。具体详情可以查看如下连接：

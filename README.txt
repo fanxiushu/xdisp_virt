@@ -12,7 +12,7 @@
 浏览器客户端支持 WebGL，WebRTC，MSE 等多种图像渲染方式。
 以及能在远程桌面顺畅的观看视频，玩游戏等多媒体娱乐功能。
 
-被控制端支持的平台包括 windows系列（从 XP，WIN7， WIN8， WIN10），macOS，Linux。
+被控制端支持的平台包括 macOS，linux，全平台windows（XP，WIN7， WIN8， WIN10，WIN11以及最新版本）。
 控制端支持原生客户端，也支持网页客户端。
 网页客户端支持的浏览器包括Chrome，FireFox，Apple Safari，Microsoft Edge，Opera等具备现代功能的浏览器，
 不支持IE以及IE内核浏览器。网页客户端不限平台，几乎所有操作系统平台都支持（包括移动平台和PC平台）。

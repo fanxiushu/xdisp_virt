@@ -25,6 +25,9 @@ fanxiushu@163.com
 CSDN: https://blog.csdn.net/fanxiushu
 GITHUB: https://github.com/fanxiushu
 
+一些演示视频：
+https://github.com/fanxiushu/xdisp_virt/issues/15
+
 bin目录包含所有执行文件
 driver目录是镜像驱动，没有签名。
 hid_driver目录是虚拟的HID鼠标键盘驱动，没有签名。

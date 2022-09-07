@@ -9,7 +9,6 @@
  
 一些演示视频： https://github.com/fanxiushu/xdisp_virt/issues/15
 
-
 这是基于windows，macOS，linux等平台的远程桌面控制程序最新版本（版本四）。
 提供远程控制，支持摄像头，多路音频，直播推流，
 集成各种直播服务端，以及安防监控ONVIF控制协议。

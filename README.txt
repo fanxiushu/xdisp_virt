@@ -6,7 +6,10 @@
 ***** 法律申明 *****
      请遵守您所在的国家及地区的相关法律法规使用本软件，
      若违法使用，一切后果自行承担。
-     
+ 
+一些演示视频： https://github.com/fanxiushu/xdisp_virt/issues/15
+
+
 这是基于windows，macOS，linux等平台的远程桌面控制程序最新版本（版本四）。
 提供远程控制，支持摄像头，多路音频，直播推流，
 集成各种直播服务端，以及安防监控ONVIF控制协议。
@@ -24,9 +27,6 @@ fanxiushu@163.com
 或者访问相关BLOG:
 CSDN: https://blog.csdn.net/fanxiushu
 GITHUB: https://github.com/fanxiushu
-
-一些演示视频：
-https://github.com/fanxiushu/xdisp_virt/issues/15
 
 bin目录包含所有执行文件
 driver目录是镜像驱动，没有签名。

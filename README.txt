@@ -35,7 +35,7 @@ hid_driver目录是虚拟的HID鼠标键盘驱动，没有签名。
 html目录包含所有网页以及javascript脚本，html目录已经被打包进 xdisp_virt.exe程序。
 image目录是程序运行的一些效果图。
 indirect_display 主要用于WIN10以上平台模拟虚拟显示器。
-virtual_camera 把远程xdisp_virt作为音视频输入源，模拟出虚拟摄像头和虚拟麦克风。
+virtual_camera  把远程xdisp_virt作为音视频输入源，模拟出虚拟摄像头和虚拟麦克风。
 
 程序开始的地方：
 一切都是从bin目录下的xdisp_virt.exe程序开始。

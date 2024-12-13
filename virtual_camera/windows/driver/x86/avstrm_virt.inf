@@ -1,0 +1,256 @@
+;
+; by fanxiushu 2024-07-01, 
+; for virtual AVstream Camera & Microphone & Sound,
+; 
+;
+
+[Version]
+signature="$Windows NT$"
+;;WIN10以上的camera的归类
+Class=Camera
+ClassGuid={ca3e7ab9-b4c3-4ae6-8251-579ef933890f}
+; Image
+;Class=Image
+;ClassGUID={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%Fxs%
+Catalogfile=avstrm_virt.cat
+DriverVer=06/30/2024,1.0.0.1
+
+;;;Class Installer,因为Win7等系统，默认是没有 Camera的CLASS，只有win10以上才有
+[ClassInstall32.NT] 
+AddReg=camera_class_addreg
+[ClassInstall32.NTamd64]
+AddReg=camera_class_addreg64
+
+[camera_class_addreg]
+HKR,,,,"Camera"
+HKR,,Icon,,"-1"
+
+;;;64位系统多了 ksthunk
+[camera_class_addreg64]
+HKR,,,,"Camera"
+HKR,,Icon,,"-1"
+HKR,,UpperFilters,0x00010000,"ksthunk"
+
+;;;;;;;;
+[ControlFlags]
+ExcludeFromSelect=*
+
+[SourceDisksNames]
+99=%diskid1%,,,
+
+[SourceDisksFiles]
+avstrm_virt.sys=99
+
+[DestinationDirs]
+DefaultDestDir=12
+avstrm_virt.CopyFiles=12
+
+[avstrm_virt.CopyFiles]
+avstrm_virt.sys
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 安装摄像头过滤驱动
+;;;; default install camera filter
+[DefaultInstall]
+OptionDesc = %FilterDesc%
+CopyFiles = avstrm_virt.CopyFiles
+AddReg = AvsFltr_AddReg
+
+[DefaultInstall.NTamd64]
+OptionDesc = %FilterDesc%
+CopyFiles = avstrm_virt.CopyFiles
+AddReg = AvsFltr_AddReg
+
+[AvsFltr_AddReg]
+;Add Filter to UpperFilters
+HKLM, System\CurrentControlSet\Control\Class\{ca3e7ab9-b4c3-4ae6-8251-579ef933890f}, UpperFilters, 0x00010008, avstrm_virt
+HKLM, System\CurrentControlSet\Control\Class\{6bdd1fc6-810f-11d0-bec7-08002be2092f}, UpperFilters, 0x00010008, avstrm_virt
+
+[DefaultInstall.Services]
+AddService = avstrm_virt,,avsInst.ServiceInstall
+[DefaultInstall.NTamd64.Services]
+AddService = avstrm_virt,,avsInst.ServiceInstall
+
+;; default uninstall
+[DefaultUninstall]
+LegacyUninstall = 1
+DelFiles = avstrm_virt.CopyFiles
+DelReg = AvsFltr_DelReg
+
+[DefaultUninstall.NTamd64]
+LegacyUninstall = 1
+DelFiles = avstrm_virt.CopyFiles
+DelReg = AvsFltr_DelReg
+
+[DefaultUninstall.Services]
+;; 0x00000200=SPSVCINST_STOPSERVICE, Stop the service before deleting it.
+DelService=avstrm_virt,0x00000200
+
+[DefaultUninstall.NTamd64.Services]
+;;0x00000200=SPSVCINST_STOPSERVICE, Stop the service before deleting it.
+DelService=avstrm_virt,0x00000200
+
+[AvsFltr_DelReg]
+;Delete avstrm_virt from LowerFilters; 
+HKLM, System\CurrentControlSet\Control\Class\{ca3e7ab9-b4c3-4ae6-8251-579ef933890f}, UpperFilters, 0x00018002, avstrm_virt
+HKLM, System\CurrentControlSet\Control\Class\{6bdd1fc6-810f-11d0-bec7-08002be2092f}, UpperFilters, 0x00018002, avstrm_virt
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Manufacturer]
+%Fxs%=avsMfact,NTamd64
+
+[avsMfact]
+%BusEnum.DevDesc% = BusEnumInst, %BusEnum.HWID%
+%Camera.DevDesc%=CameraInst, %Camera.HWID%
+%Microphone.DevDesc%=MicrophoneInst, %Microphone.HWID%
+%Sound.DevDesc%=SoundInst, %Sound.HWID%
+
+[avsMfact.NTamd64]
+%BusEnum.DevDesc% = BusEnumInst, %BusEnum.HWID%
+%Camera.DevDesc%=CameraInst, %Camera.HWID%
+%Microphone.DevDesc%=MicrophoneInst, %Microphone.HWID%
+%Sound.DevDesc%=SoundInst, %Sound.HWID%
+
+[BusEnumInst.NT]
+CopyFiles=avstrm_virt.CopyFiles
+
+;;; Camera
+[CameraInst.NT]
+Include=ks.inf, KSCAPTUR.inf
+Needs=KS.Registration,KSCAPTUR.Registration.NT
+CopyFiles=avstrm_virt.CopyFiles
+
+[CameraInst.NT.Interfaces]
+AddInterface=%KSCATEGORY_VIDEO_CAMERA%,"fanxiushu_xcam_video",CaptureInterface.NT,
+AddInterface=%KSCATEGORY_VIDEO%,"fanxiushu_xcam_video",CaptureInterface.NT,
+AddInterface=%KSCATEGORY_CAPTURE%,"fanxiushu_xcam_video",CaptureInterface.NT,
+
+[CaptureInterface.NT]
+AddReg=CameraInst.xcam.AddReg
+
+[CameraInst.xcam.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%Camera.DevDesc%
+
+;;;;;;;;;;;;;;;;;;;; Microphone
+[MicrophoneInst.NT]
+Include=ks.inf, KSCAPTUR.inf,wdmaudio.inf
+Needs=KS.Registration,KSCAPTUR.Registration.NT,wdmaudio.registration
+CopyFiles=avstrm_virt.CopyFiles
+AddReg=audio.xcam.addReg
+
+[audio.xcam.addReg]
+HKR,,AssociatedFilters,,"wdmaud,redbook"
+HKR,,Driver,,avstrm_virt.sys
+HKR,,NTMPDriver,,"avstrm_virt.sys,sbemul.sys"
+
+HKR,,CLSID,,%Proxy.CLSID%
+
+HKR,Drivers,SubClasses,,"wave,mixer"
+
+HKR,Drivers\wave\wdmaud.drv, Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+
+HKR,Drivers\wave\wdmaud.drv,Description,,%Microphone.DevDesc%
+HKR,Drivers\mixer\wdmaud.drv,Description,,%Microphone.DevDesc%
+
+[MicrophoneInst.NT.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,"fanxiushu_xcam_audio",AudioInterface.NT,
+AddInterface=%KSCATEGORY_CAPTURE%,"fanxiushu_xcam_audio",AudioInterface.NT,
+
+[AudioInterface.NT]
+AddReg=MicrophoneInst.audio.AddReg
+
+[MicrophoneInst.audio.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%Microphone.DevDesc%
+
+;;;;; Sound
+[SoundInst.NT]
+Include=ks.inf, KSCAPTUR.inf,wdmaudio.inf
+Needs=KS.Registration,KSCAPTUR.Registration.NT,wdmaudio.registration
+CopyFiles=avstrm_virt.CopyFiles
+AddReg=sound.xcam.addReg
+
+[sound.xcam.addReg]
+HKR,,AssociatedFilters,,"wdmaud,redbook"
+HKR,,Driver,,avstrm_virt.sys
+HKR,,NTMPDriver,,"avstrm_virt.sys,sbemul.sys"
+
+HKR,,CLSID,,%Proxy.CLSID%
+
+HKR,Drivers,SubClasses,,"wave,mixer"
+
+HKR,Drivers\wave\wdmaud.drv, Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+
+HKR,Drivers\wave\wdmaud.drv,Description,,%Sound.DevDesc%
+HKR,Drivers\mixer\wdmaud.drv,Description,,%Sound.DevDesc%
+
+[SoundInst.NT.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,"fanxiushu_xcam_sound",SoundInterface.NT,
+AddInterface=%KSCATEGORY_RENDER%,"fanxiushu_xcam_sound",SoundInterface.NT,
+
+[SoundInterface.NT]
+AddReg=Sound.audio.AddReg
+
+[Sound.audio.AddReg]
+HKR,,CLSID,,%Proxy.CLSID%
+HKR,,FriendlyName,,%Sound.DevDesc%
+
+
+;---------------------------------------------------------------
+;                S e r v i c e s  
+;---------------------------------------------------------------
+
+[BusEnumInst.NT.Services]
+AddService=avstrm_virt, 0x00000002, avsInst.ServiceInstall
+
+[CameraInst.NT.Services]
+AddService=avstrm_virt, 0x00000002, avsInst.ServiceInstall
+
+[MicrophoneInst.NT.Services]
+AddService=avstrm_virt, 0x00000002, avsInst.ServiceInstall
+
+[SoundInst.NT.Services]
+AddService=avstrm_virt, 0x00000002, avsInst.ServiceInstall
+
+[avsInst.ServiceInstall]
+DisplayName = %avs.SvcDesc%
+ServiceType = 1; %SERVICE_KERNEL_DRIVER%
+StartType = 3;   %SERVICE_DEMAND_START%
+ErrorControl = 1; %SERVICE_ERROR_NORMAL%
+ServiceBinary = %12%\avstrm_virt.sys
+
+; Strings
+
+[Strings]
+
+Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_VIDEO_CAMERA="{E5323777-F976-4f5b-9B55-B94699C46E44}"
+KSCATEGORY_VIDEO="{6994AD05-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_AUDIO="{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_RENDER="{65E8773E-8F56-11D0-A3B9-00A0C9223196}"
+
+Fxs = "Fanxiushu"
+diskid1     ="Fanxiushu Installation Disk"
+
+FilterDesc="Fanxiushu AVStream Camera Filter"
+
+avs.SvcDesc = "Fanxiushu Virtual AVStream Devices Services"
+
+BusEnum.DevDesc = "Fanxiushu Virtual AVStream Bus Enumerator"
+Camera.DevDesc = "Fanxiushu Virtual Camera Driver"
+Microphone.DevDesc = "Fanxiushu Virtual Microphone Driver"
+Sound.DevDesc = "Fanxiushu Virtual SoundCard Driver"
+
+;;;;;;;必须设置成 Root和 vFxsAvStrm两个不同的目录(名字随意取)，
+;;;;;;;否则会出现非常诡异的即使卸载掉底层的PDO，扫描硬件检测的时候，还是会主动生成摄像头等设备。
+BusEnum.HWID = "Root\FanxiushuAvStrmBusEnumeratorHwId"
+Camera.HWID = "vFxsAvStrm\FanxiushuAvStrmCameraHwId"
+Microphone.HWID = "vFxsAvStrm\FanxiushuAvStrmMicrophoneHwId"
+Sound.HWID = "vFxsAvStrm\FanxiushuAvStrmSoundHwId"
+
+

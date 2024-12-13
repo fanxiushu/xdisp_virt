@@ -1,0 +1,50 @@
+Windows版本xdisp_virt，
+开发作者并未公布对应的蓝牙鼠标键盘驱动，
+估计以后也不会公开出来，至少短期内不会公布。
+因此大家使用Windows版本xdisp_virt的时候无法控制iOS。
+
+但是Linux版本的xdisp_virt程序内部已经集成了蓝牙鼠标键盘功能模块.
+所以完全可以转换思路，使用linux系统的xdisp_virt程序来控制iOS。
+
+而且根据xdisp_virt的特性，
+只要网络通顺，在随便哪个地方，只要有个浏览器就能使用。
+因此完全可以把linux作为后台服务使用，不必登录到linux让人难受的GUI界面。
+
+此处以Windows平台中安装vmware程序，然后再安装CentOS7系统为例，
+来说明如何在linux中运行xdisp_virt程序，从而实现控制iOS.
+
+1，安装vmware程序，16以上或者最新版本，
+      linux系统安装CentOS7， 其他发布版本的Linux系统也没任何问题
+      比如Ubuntu， Debain等等都可以。
+      此处不再阐述安装细节。
+
+2，虚拟机CentOS7的网络设置成桥接方式，并且设置成固定IP地址。
+     注意需要关闭linux的网络防火墙。
+     否则同样处于同一个局域网的iOS设备无法通过AirPlay协议发现xdisp_virt程序。
+
+3，取消虚拟机的蓝牙共享模式。
+      具体做法是vmware上：
+         虚拟机->设置->硬件->USB控制器->与虚拟机共享蓝牙设备
+      把这个选项取消掉。
+
+,3，购买USB接口的蓝牙设备，插入到windows电脑中，
+      如果windows电脑内部集成的蓝牙设备是USB总线的，可以直接使用不必购买。
+      在vmware上：虚拟机->可移动设备， 找到这个USB蓝牙设备，然后映射进CentOS7虚拟机。
+      
+4，修改 CentOS7 系统 bluetoothd服务以带 -C -P input 参数运行。具体做法如下：
+         vi /etc/systemd/system/bluetooth.target.wants/bluetooth.service
+            修改 
+            ExecStart=/usr/libexec/bluetooth/bluetoothd
+            为
+            ExecStart=/usr/libexec/bluetooth/bluetoothd -C -P input
+
+      然后 
+              systemctl daemon-reload
+              systemctl restart bluetooth.service
+       重启服务，通过 ps -ef|grep bluetooth 检测是否真正带 -C -P input 参数运行。
+
+5，运行 xdisp_virt 程序，按照程序说明，运行其中的AirPlay功能，关联蓝牙地址， 等等。
+     
+然后在任何一台电脑或者手机或平板，只要能访问你配置的CentOS7的IP地址，
+用浏览器输入 http: // CentOS7的IP地址:11000
+之后就能愉快的使用xdisp_virt的AirPlay功能，并且愉快的远程控制iOS了。

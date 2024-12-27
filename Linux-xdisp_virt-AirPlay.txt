@@ -43,7 +43,8 @@ Windows版本xdisp_virt，
               systemctl restart bluetooth.service
        重启服务，通过 ps -ef|grep bluetooth 检测是否真正带 -C -P input 参数运行。
 
-5，以超级用户root的权限运行 xdisp_virt 程序，
+5，以超级用户root的权限运行 xdisp_virt 程序，记得一定得以root用户运行，linux运行xdisp_virt可查看：
+      https://github.com/fanxiushu/xdisp_virt/blob/master/bin/linux/README.txt
      按照程序说明，运行其中的AirPlay功能，关联蓝牙地址， 等等。
      
 然后在任何一台电脑或者手机或平板，只要能访问你配置的CentOS7的IP地址，

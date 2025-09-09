@@ -1,0 +1,63 @@
+;
+;       Printer Installation File
+;
+;        List of supported printers, manufacturers
+;
+
+[Version]
+Signature="$Windows NT$"
+Provider=%MS%
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+DriverVer=10/19/2016,1.00.0001
+CatalogFile=p6virt_printer.cat
+
+;
+; Manufacturer section.
+;
+; This section lists all of the manufacturers 
+; that we will display in the Dialog box
+;
+
+[Manufacturer]
+"HP"=HP, NTamd64, NTia64
+
+;
+; Model Specifications Section
+;
+
+[HP]
+"PCL6 Virtual Printer Mini Driver"= P6VIRT_PRINTER.GPD, PCL6_VirtPrinter_Mini_Driver
+
+[HP.NTamd64]
+"PCL6 Virtual Printer Mini Driver"= P6VIRT_PRINTER.GPD, PCL6_VirtPrinter_Mini_Driver
+
+[HP.NTia64]
+"PCL6 Virtual Printer Mini Driver"= P6VIRT_PRINTER.GPD, PCL6_VirtPrinter_Mini_Driver
+
+;
+; Installer section(s) referenced above.
+;
+
+[P6VIRT_PRINTER.GPD]
+CopyFiles=@P6VIRT_PRINTER.GPD
+DataSection=UNIDRV_DATA
+DataFile=P6VIRT_PRINTER.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM,TTFSUB.OEM,PCLXL.OEM
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+[SourceDisksNames]
+1 = %disk1%,,,\
+
+[SourceDisksFiles]
+P6VIRT_PRINTER.GPD = 1
+
+[Strings]
+PrinterClassName="Printers"
+MS="Microsoft"
+disk1="Windows Update"
+PJL_MONITOR="PJL Language Monitor,PJLMON.DLL"
+

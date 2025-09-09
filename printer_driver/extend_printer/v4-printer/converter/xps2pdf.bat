@@ -1,0 +1,1 @@
+%~dp0/gxpswin32.exe -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -o %2 %1

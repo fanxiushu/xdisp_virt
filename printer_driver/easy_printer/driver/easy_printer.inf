@@ -1,0 +1,41 @@
+[Version]
+Signature="$Windows NT$"
+Provider=%MS%
+LayoutFile=ntprint.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+DriverVer=08/09/2025,1.0.0.1
+CatalogFile=easy_printer.cat
+
+[Manufacturer]
+%DrvDesc%=easyprn, NTx86, NTamd64
+
+[easyprn.NTx86]
+%DrvDesc%=easy_printer.gpd,,easy_printer
+
+[easyprn.NTamd64]
+%DrvDesc%=easy_printer.gpd,,easy_printer
+
+[easy_printer.gpd]
+CopyFiles=@easy_printer.gpd
+DataFile=easy_printer.gpd
+DataSection=UNIDRV_DATA
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM,UNIDRV_DATA
+
+[SourceDisksFiles]
+easy_printer.gpd = 1
+
+[SourceDisksNames]
+1 = ,,,\
+
+[SourceDisksNames.amd64]
+1 = ,,,\
+
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+[Strings]
+DrvDesc="xdisp_virt Virtual Easy Printer"
+MS="EasyPrinter"

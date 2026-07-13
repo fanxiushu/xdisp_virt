@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
       用于xdisp_virt程序访问，检测是否有新版本提供
                                                        2017-2026 xdisp_virt 
 -->
 <Version>
-      <xdisp_virt>7.0.0.0</xdisp_virt>
-      <xdisp_server>3.3.0.0</xdisp_server>
+      <xdisp_virt>7.0.7.13</xdisp_virt>
+      <xdisp_server>3.3.7.13</xdisp_server>
 </Version>

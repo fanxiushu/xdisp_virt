@@ -12,6 +12,7 @@
 AirPlay的演示视频：https://github.com/fanxiushu/xdisp_virt/issues/25
 VirtualCamera的演示视频：https://github.com/fanxiushu/xdisp_virt/issues/31
 Linux中蓝牙控制iOS安装说明：https://github.com/fanxiushu/xdisp_virt/blob/master/Linux-xdisp_virt-AirPlay.txt
+中国境内克隆地址： https://gitcode.com/fanxiushu/xdisp_virt
 
 ######################################################################
     这是基于windows,macOS,linux等平台的远程桌面控制程序最新版本（版本七）。

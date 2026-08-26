@@ -7,12 +7,15 @@
 ***** 法律申明 *****
      严禁破解此软件去除水印，更加严禁到处传播破解版本，违者必究。
      请遵守您所在的国家及地区的相关法律法规使用本软件，若违法使用，一切后果自行承担。
- 
+
+中国境内镜像地址：
+    https://gitee.com/fanxiushu/xdisp_virt
+    https://gitcode.com/fanxiushu/xdisp_virt
+    
 一些通用演示视频： https://github.com/fanxiushu/xdisp_virt/issues/15
 AirPlay的演示视频：https://github.com/fanxiushu/xdisp_virt/issues/25
 VirtualCamera的演示视频：https://github.com/fanxiushu/xdisp_virt/issues/31
 Linux中蓝牙控制iOS安装说明：https://github.com/fanxiushu/xdisp_virt/blob/master/Linux-xdisp_virt-AirPlay.txt
-中国境内克隆地址： https://gitcode.com/fanxiushu/xdisp_virt
 
 ######################################################################
     这是基于windows,macOS,linux等平台的远程桌面控制程序最新版本（版本七）。
